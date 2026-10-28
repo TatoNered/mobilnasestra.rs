@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO audit — mobilnasestra.rs</title>
+<meta name="description" content="Detaljan tehnički i sadržajni SEO audit sajta mobilnasestra.rs sa prioritetnim planom rada i predlogom saradnje.">
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --surface-2:#f0f2f5; --line:#dfe3e8;
+  --ink:#16202b; --ink-2:#4b5765; --ink-3:#7c8795;
+  --accent:#0f6f5c; --accent-soft:#e3f1ee; --accent-ink:#0a4f42;
+  --crit:#b4232a; --crit-soft:#fbeaea;
+  --warn:#9a6207; --warn-soft:#fdf2dc;
+  --ok:#1d6f3f; --ok-soft:#e6f3ea;
+  --info:#2a5aa8; --info-soft:#e8eef9;
+  --radius:10px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161c; --surface:#181f27; --surface-2:#1f2832; --line:#2c3845;
+    --ink:#e8edf2; --ink-2:#aeb9c6; --ink-3:#7d8a99;
+    --accent:#4bbfa4; --accent-soft:#16302b; --accent-ink:#8fdcc8;
+    --crit:#f1868c; --crit-soft:#331a1c;
+    --warn:#e0b05a; --warn-soft:#332a18;
+    --ok:#73c791; --ok-soft:#18301f;
+    --info:#8fb4ef; --info-soft:#1a2436;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161c; --surface:#181f27; --surface-2:#1f2832; --line:#2c3845;
+  --ink:#e8edf2; --ink-2:#aeb9c6; --ink-3:#7d8a99;
+  --accent:#4bbfa4; --accent-soft:#16302b; --accent-ink:#8fdcc8;
+  --crit:#f1868c; --crit-soft:#331a1c;
+  --warn:#e0b05a; --warn-soft:#332a18;
+  --ok:#73c791; --ok-soft:#18301f;
+  --info:#8fb4ef; --info-soft:#1a2436;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:1000px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .brand{font-weight:700;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap}
+.topbar nav{display:flex;gap:4px;flex-wrap:wrap;font-size:.8rem;margin-left:auto}
+.topbar nav a{
+  color:var(--ink-2);text-decoration:none;padding:4px 8px;border-radius:6px;white-space:nowrap;
+}
+.topbar nav a:hover{background:var(--surface-2);color:var(--ink)}
+@media(max-width:760px){
+  .topbar-in{flex-wrap:nowrap;gap:10px}
+  .topbar nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .topbar nav::-webkit-scrollbar{display:none}
+  .topbar .brand{font-size:.84rem}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 34px;border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-size:.72rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 14px;
+}
+h1{font-size:clamp(1.85rem,5vw,2.9rem);line-height:1.12;letter-spacing:-.03em;margin:0 0 16px;font-weight:800}
+.lede{font-size:clamp(1.02rem,2.2vw,1.18rem);color:var(--ink-2);max-width:65ch;margin:0 0 26px}
+.meta-strip{
+  display:flex;gap:26px;flex-wrap:wrap;font-size:.82rem;color:var(--ink-3);
+  padding-top:20px;border-top:1px solid var(--line);
+}
+.meta-strip b{display:block;color:var(--ink);font-size:.94rem;font-weight:600}
+
+/* ---------- sections ---------- */
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{
+  font-size:clamp(1.3rem,3.2vw,1.72rem);line-height:1.2;letter-spacing:-.02em;
+  margin:0 0 6px;font-weight:750;
+}
+h2 .num{
+  display:inline-block;font-family:var(--mono);font-size:.72em;color:var(--accent);
+  margin-right:.5em;font-weight:600;
+}
+.sub{color:var(--ink-3);font-size:.9rem;margin:0 0 26px;max-width:70ch}
+h3{font-size:1.06rem;margin:30px 0 10px;letter-spacing:-.01em;font-weight:700}
+h4{font-size:.95rem;margin:20px 0 8px;font-weight:650}
+p{margin:0 0 14px;max-width:72ch}
+ul,ol{margin:0 0 16px;padding-left:22px;max-width:72ch}
+li{margin-bottom:7px}
+code{font-family:var(--mono);font-size:.855em;background:var(--surface-2);padding:1px 5px;border-radius:4px;word-break:break-word}
+a{color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) a{color:var(--accent)}}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin:18px 0;
+}
+.card > :last-child{margin-bottom:0}
+.card-title{font-weight:700;font-size:1rem;margin:0 0 10px;display:flex;gap:9px;align-items:baseline}
+
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin:20px 0}
+.callout.crit{border-left-color:var(--crit);background:var(--crit-soft)}
+.callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.callout.info{border-left-color:var(--info);background:var(--info-soft)}
+.callout > :last-child{margin-bottom:0}
+.callout h3{margin-top:0}
+
+/* ---------- stat grid ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.stat .v{font-size:1.75rem;font-weight:780;letter-spacing:-.035em;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .k{font-size:.775rem;color:var(--ink-3);margin-top:5px;line-height:1.4}
+.stat.is-crit .v{color:var(--crit)}
+.stat.is-warn .v{color:var(--warn)}
+.stat.is-ok .v{color:var(--ok)}
+
+/* ---------- tables ---------- */
+.tbl-scroll{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:540px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{
+  background:var(--surface-2);font-weight:650;font-size:.73rem;text-transform:uppercase;
+  letter-spacing:.055em;color:var(--ink-2);white-space:nowrap;position:sticky;top:0;
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:.82rem;white-space:nowrap}
+td.url{font-family:var(--mono);font-size:.78rem;word-break:break-all}
+.bad{color:var(--crit);font-weight:650}
+.mid{color:var(--warn);font-weight:650}
+.good{color:var(--ok);font-weight:650}
+
+/* ---------- badges ---------- */
+.badge{
+  display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:2.5px 8px;border-radius:20px;white-space:nowrap;vertical-align:middle;
+}
+.b-crit{background:var(--crit-soft);color:var(--crit)}
+.b-warn{background:var(--warn-soft);color:var(--warn)}
+.b-info{background:var(--info-soft);color:var(--info)}
+.b-ok{background:var(--ok-soft);color:var(--ok)}
+
+/* ---------- bars ---------- */
+.bars{margin:18px 0;display:grid;gap:9px}
+.bar-row{display:grid;grid-template-columns:minmax(120px,1.35fr) 3fr auto;gap:12px;align-items:center;font-size:.82rem}
+.bar-track{background:var(--surface-2);border-radius:5px;height:17px;overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;border-radius:4px 0 0 4px;background:var(--accent)}
+.bar-fill.f-crit{background:var(--crit)}
+.bar-fill.f-warn{background:var(--warn)}
+.bar-fill.f-ok{background:var(--ok)}
+.bar-val{font-family:var(--mono);font-size:.78rem;color:var(--ink-2);min-width:52px;text-align:right}
+.bar-lbl{color:var(--ink-2)}
+@media(max-width:560px){
+  .bar-row{grid-template-columns:1fr auto;gap:4px 10px}
+  .bar-track{grid-column:1/-1}
+}
+
+/* ---------- findings ---------- */
+.finding{
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--ink-3);
+  border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;margin:14px 0;
+}
+.finding.p1{border-left-color:var(--crit)}
+.finding.p2{border-left-color:var(--warn)}
+.finding.p3{border-left-color:var(--info)}
+.finding-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:9px}
+.finding-head h4{margin:0;font-size:1.01rem;font-weight:700}
+.finding dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.87rem}
+.finding dt{color:var(--ink-3);font-weight:600;white-space:nowrap;font-size:.79rem;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+.finding dd{margin:0}
+.finding > :last-child{margin-bottom:0}
+
+/* ---------- timeline ---------- */
+.phase{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin:14px 0;
+}
+.phase-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.phase-head .per{
+  font-family:var(--mono);font-size:.76rem;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);padding:3px 9px;border-radius:5px;white-space:nowrap;
+}
+.phase-head h3{margin:0;font-size:1.08rem}
+.phase .goal{font-size:.87rem;color:var(--ink-3);margin:0 0 14px;font-style:italic}
+
+/* ---------- price ---------- */
+.price-box{
+  background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);
+  padding:26px;margin:24px 0;
+}
+.price-num{font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .price-num{color:var(--accent)}}
+.price-per{font-size:1rem;font-weight:500;color:var(--ink-3);letter-spacing:0}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}
+.team-m{background:var(--surface-2);border-radius:8px;padding:14px 16px}
+.team-m b{display:block;font-size:.92rem;margin-bottom:3px}
+.team-m span{font-size:.8rem;color:var(--ink-3);line-height:1.45}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+
+footer{padding:36px 0 50px;color:var(--ink-3);font-size:.83rem;border-top:1px solid var(--line)}
+footer p{max-width:72ch}
+
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin:26px 0}
+.toc ol{columns:2;column-gap:34px;margin:0;padding-left:20px;font-size:.88rem}
+.toc li{margin-bottom:6px;break-inside:avoid}
+.toc a{color:var(--ink-2);text-decoration:none}
+.toc a:hover{color:var(--accent-ink);text-decoration:underline}
+@media(max-width:620px){.toc ol{columns:1}}
+
+@media print{
+  .topbar{display:none}
+  body{background:#fff;font-size:11pt}
+  section{page-break-inside:avoid;border-bottom:1px solid #ccc}
+  .card,.finding,.phase{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="brand">SEO audit · mobilnasestra.rs</span>
+    <nav>
+      <a href="#rezime">Rezime</a>
+      <a href="#nalaz">Glavni nalaz</a>
+      <a href="#tehnika">Tehnika</a>
+      <a href="#sadrzaj">Sadržaj</a>
+      <a href="#linkovi">Linkovi</a>
+      <a href="#lokalni">Lokalni SEO</a>
+      <a href="#konkurencija">Konkurencija</a>
+      <a href="#plan">Plan</a>
+      <a href="#ponuda">Ponuda</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Tehnički i sadržajni SEO audit</p>
+    <h1>mobilnasestra.rs</h1>
+    <p class="lede">Sajt ima ozbiljnu sadržajnu osnovu — 437 strana, 400+ autorskih tekstova, press arhivu i prave preporuke pacijenata. Ono što mu nedostaje nije sadržaj, nego tehnička higijena i komercijalna struktura: zbog jedne nerešene stvari na serveru Google vidi dva kompletna sajta umesto jednog, a strane koje treba da donose pozive su najslabije na sajtu.</p>
+    <div class="meta-strip">
+      <div><b>mobilnasestra.rs</b>Domen</div>
+      <div><b>28. oktobar 2026.</b>Datum audita</div>
+      <div><b>875 URL-ova</b>Obuhvat obilaska</div>
+      <div><b>437</b>Jedinstvenih strana</div>
+      <div><b>Beograd</b>Tržište</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="toc">
+    <strong style="display:block;margin-bottom:12px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">Sadržaj</strong>
+    <ol>
+      <li><a href="#rezime">Rezime za direktora</a></li>
+      <li><a href="#metod">Metodologija i granice audita</a></li>
+      <li><a href="#nalaz">Glavni nalaz: dva sajta na jednom domenu</a></li>
+      <li><a href="#tehnika">Tehnička osnova</a></li>
+      <li><a href="#indeks">Indeksacija i struktura URL-ova</a></li>
+      <li><a href="#meta">Title i meta description</a></li>
+      <li><a href="#sadrzaj">Struktura sadržaja i H naslovi</a></li>
+      <li><a href="#linkovi">Interno linkovanje</a></li>
+      <li><a href="#usluge">Uslužne strane i komercijalni signali</a></li>
+      <li><a href="#lokalni">Lokalni SEO za Beograd</a></li>
+      <li><a href="#schema">Strukturirani podaci</a></li>
+      <li><a href="#slike">Slike, brzina, bezbednost</a></li>
+      <li><a href="#konkurencija">Konkurentsko okruženje</a></li>
+      <li><a href="#prilike">Neiskorišćene prilike</a></li>
+      <li><a href="#plan">Plan rada po fazama</a></li>
+      <li><a href="#ponuda">Ponuda i tim</a></li>
+      <li><a href="#kpi">KPI i izveštavanje</a></li>
+      <li><a href="#potrebno">Šta nam je potrebno od vas</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============ 1. REZIME ============ -->
+<section id="rezime">
+<div class="wrap">
+  <h2><span class="num">01</span>Rezime za direktora</h2>
+  <p class="sub">Najkraća verzija: sajt nije loš, sajt je neuređen. Veliki deo problema rešava se izmenama na serveru i u šablonu, bez redizajna.</p>
+
+  <div class="stats">
+    <div class="stat is-crit"><div class="v">2×</div><div class="k">Svaka strana postoji u dve verzije — www i bez www, obe dostupne</div></div>
+    <div class="stat is-crit"><div class="v">426</div><div class="k">Od 438 strana nema ni jedan <code>H2</code> naslov</div></div>
+    <div class="stat is-crit"><div class="v">377</div><div class="k">Strana ima najviše 2 interna linka — praktično nevidljive</div></div>
+    <div class="stat is-crit"><div class="v">0</div><div class="k">Strana sa schema.org oznakama</div></div>
+    <div class="stat is-warn"><div class="v">2</div><div class="k">Od 438 title-ova sadrži reč „Beograd"</div></div>
+    <div class="stat is-warn"><div class="v">239</div><div class="k">Meta description-a duže od 160 znakova</div></div>
+    <div class="stat is-warn"><div class="v">486</div><div class="k">Slika bez <code>alt</code> atributa</div></div>
+    <div class="stat is-warn"><div class="v">0</div><div class="k">Objavljenih cena ili cenovnika na sajtu</div></div>
+  </div>
+
+  <h3>Pet stvari koje najviše koštaju</h3>
+  <ol>
+    <li><strong>Dva ogledala domena.</strong> <code>mobilnasestra.rs</code> i <code>www.mobilnasestra.rs</code> vraćaju identične strane sa kodom 200, i svaka verzija sama sebe označava kao kanonsku. Google bira jednu, a snaga linkova i signali se dele između dve. Rešava se jednim redirektom.</li>
+    <li><strong>Uslužne strane su najslabije strane na sajtu.</strong> „Kućna nega starih" ima 203 reči i jedan interni link. „Kućna nega dece" — 141 reč. „Kućna nega porodilja" — 130 reči. To su strane koje treba da donose pozive.</li>
+    <li><strong>Katalog usluga vodi na blog članke.</strong> Oko trećine linkova sa strane <code>/usluge</code> vodi na informativne tekstove iz bloga, a ne na komercijalne strane usluga. Blog tekst ne može da rangira za upit sa namerom kupovine i ne konvertuje.</li>
+    <li><strong>Sajt gotovo nikad ne kaže gde radi.</strong> Dva title-a i četiri description-a od 438 sadrže „Beograd". Za uslugu koja se pruža na terenu u jednom gradu to je najskuplja propuštena stvar.</li>
+    <li><strong>Nula strukturiranih podataka.</strong> Ni <code>MedicalBusiness</code>, ni <code>Service</code>, ni <code>FAQPage</code>, ni ocene. Konkurencija u rezultatima dobija bogatije prikaze, vi ne.</li>
+  </ol>
+
+  <div class="callout">
+    <h3>Šta je dobra vest</h3>
+    <p>Sadržajna osnova je retko dobra za ovu nišu: preko 400 autorskih tekstova o nezi rana, dekubitusu, stomi, kateterima, postoperativnoj rehabilitaciji i nezi novorođenčeta. 281 strana ima više od 700 reči. Strana <code>/rekli-su-o-nama</code> ima 1834 reči pravih preporuka pacijenata. Press arhiva ima linkove sa RTS-a, Politike, eKapije, Telegrafa i drugih medija — to je autoritet koji se ne kupuje.</p>
+    <p>Taj kapital je samo loše upakovan. Zato prva tri meseca rada nisu „pisanje novog sadržaja", nego izvlačenje vrednosti iz onoga što već postoji.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 2. METOD ============ -->
+<section id="metod">
+<div class="wrap">
+  <h2><span class="num">02</span>Metodologija i granice audita</h2>
+  <p class="sub">Transparentno o tome na čemu se zasnivaju zaključci i šta nije bilo moguće proveriti.</p>
+
+  <h3>Šta je urađeno</h3>
+  <ul>
+    <li>Kompletan obilazak sajta: 875 URL-ova, prikupljeni kodovi odgovora, title, description, H naslovi, canonical, broj reči, slike, <code>alt</code> atributi.</li>
+    <li>Analiza grafa internog linkovanja: 24.968 veza, od toga 20.388 internih i 4.580 eksternih, sa tekstovima linkova.</li>
+    <li>Provera indeksabilnosti i klasifikacija strana po tipu.</li>
+    <li>Ručni pregled početne strane, strukture menija, komercijalnih elemenata i poziva na akciju.</li>
+    <li>Pregled konkurencije u Beogradu i agregatora koji zauzimaju prve pozicije za ključne upite.</li>
+  </ul>
+
+  <h3>Šta nije bilo moguće proveriti</h3>
+  <div class="callout info">
+    <p>Audit je rađen bez pristupa <strong>Google Search Console</strong> i <strong>Google Analytics</strong>. To znači da u ovom dokumentu nema podataka o stvarnom broju prikaza, pozicijama po upitima, CTR-u u rezultatima pretrage, stranama koje već donose saobraćaj, ni o tome koje strane Google zaista drži u indeksu.</p>
+    <p>Svi zaključci su izvedeni iz obilaska sajta i javno dostupnih podataka. To je dovoljno da se identifikuju i prioritetizuju problemi — tehnički problemi su tehnički problemi bez obzira na saobraćaj. Nije dovoljno da se precizno izmeri koliko vas svaki od njih trenutno košta.</p>
+    <p><strong>Prvi zadatak nakon potpisivanja saradnje:</strong> pristup Search Console i Analytics-u, i revizija ovog dokumenta sa podacima o stvarnim upitima i pozicijama. Takođe treba proveriti postojanje i sadržaj <code>robots.txt</code> i <code>sitemap.xml</code> — u obilasku sitemap nije pronađen ni za jedan URL, što ukazuje da ga verovatno nema ili nije prijavljen.</p>
+  </div>
+
+  <h3>O broju „6229 problema"</h3>
+  <p>Automatski alat je prijavio 6229 problema. Taj broj nije iskren prikaz stanja i nećemo ga koristiti kao argument. Oko 85% tih prijava je posledica <strong>jedne jedine stvari</strong> — nerešenog www ogledala, koje svaku stranu duplira i time automatski duplira svaku prijavu na njoj. Nakon postavljanja redirekta taj broj pada na ispod 900, bez ijedne izmene u sadržaju.</p>
+  <p>Zato je u ostatku dokumenta sve preračunato na <strong>437 jedinstvenih strana</strong>, a ne na 875 obiđenih URL-ova. Brojevi su manji, ali su stvarni.</p>
+</div>
+</section>
+
+<!-- ============ 3. GLAVNI NALAZ ============ -->
+<section id="nalaz">
+<div class="wrap">
+  <h2><span class="num">03</span>Glavni nalaz: dva sajta na jednom domenu</h2>
+  <p class="sub">Najvažniji nalaz audita i najjeftinija ispravka u celom dokumentu.</p>
+
+  <div class="callout crit">
+    <h3>Šta se dešava</h3>
+    <p>Obe verzije domena rade nezavisno i vraćaju kod <code>200 OK</code>:</p>
+    <ul>
+      <li><code>https://mobilnasestra.rs/o-nama</code> → canonical pokazuje na <code>https://mobilnasestra.rs/o-nama</code></li>
+      <li><code>https://www.mobilnasestra.rs/o-nama</code> → canonical pokazuje na <code>https://www.mobilnasestra.rs/o-nama</code></li>
+    </ul>
+    <p>Nema redirekta između njih. Svaka verzija <strong>sama sebe</strong> proglašava originalom. To nije „Google će već shvatiti" situacija — to je sajt koji aktivno tvrdi da su obe verzije ispravne.</p>
+  </div>
+
+  <h3>Razmere</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Verzija domena</th><th class="num">Strana sa kodom 200</th><th>Canonical pokazuje na</th></tr></thead>
+    <tbody>
+      <tr><td><code>mobilnasestra.rs</code></td><td class="num">438</td><td>samu sebe (435 strana)</td></tr>
+      <tr><td><code>www.mobilnasestra.rs</code></td><td class="num">437</td><td>samu sebe (435 strana)</td></tr>
+      <tr><td><strong>Jedinstvenih strana</strong></td><td class="num"><strong>437</strong></td><td>—</td></tr>
+      <tr><td>Početna strana</td><td class="num">3</td><td>bez canonical-a na sve tri varijante</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Šta to konkretno košta</h3>
+  <ul>
+    <li><strong>Deljenje snage linkova.</strong> Svaki link koji je neki medij ili katalog dao sajtu dolazi na jednu od dve verzije. Autoritet se deli umesto da se sabira. Press arhiva pokazuje linkove sa rts.rs, politika.rs, ekapija.com, telegraf.rs, prva.rs, bizlife.rs i drugih — to je vredan autoritet koji se trenutno polovi.</li>
+    <li><strong>Potrošen budžet obilaska.</strong> Google obilazi 875 strana da bi videlo 437. Polovina resursa ide u prazno, nove strane se indeksiraju sporije.</li>
+    <li><strong>Nestabilne pozicije.</strong> Google sam odlučuje koju verziju prikazati i ta odluka može da se menja. U rezultatima se može pojaviti verzija bez ulaznih linkova.</li>
+    <li><strong>Lažna slika stanja u svim alatima.</strong> Svaki SEO alat, uključujući i Search Console ako je prijavljena samo jedna verzija, pokazuje nepotpune podatke.</li>
+  </ul>
+
+  <div class="callout">
+    <h3>Ispravka</h3>
+    <p>Trajni <code>301</code> redirekt sa <code>www.mobilnasestra.rs</code> na <code>mobilnasestra.rs</code> (ili obrnuto — nije važno koja verzija pobedi, važno je da pobedi jedna), na nivou servera, za sve strane. Plus provera da li <code>http://</code> ispravno redirektuje na <code>https://</code> u jednom skoku, a ne u dva.</p>
+    <p><strong>Trajanje:</strong> jedan radni sat za nekoga ko ima pristup serveru. <strong>Efekat:</strong> uklanja oko 85% svih prijavljenih problema i spaja razdeljeni autoritet domena.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 4. TEHNIKA ============ -->
+<section id="tehnika">
+<div class="wrap">
+  <h2><span class="num">04</span>Tehnička osnova</h2>
+  <p class="sub">Stvari koje se rešavaju u šablonu i na serveru, jednom, za celi sajt.</p>
+
+  <div class="finding p1">
+    <div class="finding-head"><span class="badge b-crit">Prioritet 1</span><h4>Nema prijavljenog sitemap.xml</h4></div>
+    <p>U obilasku nije pronađen ni jedan URL koji pripada XML sitemap-u. Za sajt sa 437 strana, od kojih 377 ima najviše dva interna linka, sitemap nije luksuz — on je često jedini način da Google uopšte sazna da strana postoji.</p>
+    <dl>
+      <dt>Rešenje</dt><dd>Generisati <code>sitemap.xml</code> sa svim kanonskim stranama (samo odabrana verzija domena, bez paginacije bloga), dodati <code>lastmod</code>, prijaviti u Search Console, referencirati iz <code>robots.txt</code>.</dd>
+      <dt>Trajanje</dt><dd>2–4 sata</dd>
+    </dl>
+  </div>
+
+  <div class="finding p1">
+    <div class="finding-head"><span class="badge b-crit">Prioritet 1</span><h4>Pokvaren link generiše strane-smeće</h4></div>
+    <p>U kodu postoji link čiji <code>href</code> sadrži ceo tekst članka umesto adrese. Rezultat je URL dužine preko 300 znakova:</p>
+    <p><code>/Ponekad%20smetnemo%20sa%20uma%20koliko%20je%20svakom%20ljudskom%20bi%C4%87u...</code></p>
+    <p>Ta strana vraća kod 200 i pritom <strong>nema title, nema H1, nema canonical, nema ni meta viewport</strong> — jedina strana na sajtu koja nije prilagođena mobilnim telefonima. Dostupna je za indeksiranje.</p>
+    <dl>
+      <dt>Rešenje</dt><dd>Naći i ispraviti pokvareni <code>href</code> u sadržaju. Sličan problem postoji i na strani <code>/podrska-kroz-prevenciju-lecenje-i-negu-evropska-nedelja-prevencije-raka-grlica-materice%C2%A0</code> — URL završava nevidljivim znakom (non-breaking space), zbog čega canonical pokazuje na drugu adresu.</dd>
+      <dt>Trajanje</dt><dd>1–2 sata</dd>
+    </dl>
+  </div>
+
+  <div class="finding p2">
+    <div class="finding-head"><span class="badge b-warn">Prioritet 2</span><h4>Velika slova u URL-u prave duplikat</h4></div>
+    <p>Strana <code>/nega-stome-kod-kuce-Mobilna-sestra</code> ima veliko „M" u adresi, a canonical pokazuje na verziju sa malim slovima. Server, dakle, odgovara na obe. Isti sadržaj na dve adrese.</p>
+    <dl>
+      <dt>Rešenje</dt><dd>Redirekt sa verzije sa velikim slovima na malu verziju i pravilo na serveru koje sve URL-ove normalizuje na mala slova.</dd>
+      <dt>Trajanje</dt><dd>1 sat</dd>
+    </dl>
+  </div>
+
+  <div class="finding p2">
+    <div class="finding-head"><span class="badge b-warn">Prioritet 2</span><h4>Meta viewport blokira zumiranje</h4></div>
+    <p>Šablon sadrži <code>maximum-scale=1.0, user-scalable=no</code>. To znači da korisnik na telefonu ne može da uveća tekst prstima.</p>
+    <p>Za ovaj sajt to nije samo tehnička sitnica. Posetioci su u velikoj meri stariji ljudi i članovi njihovih porodica, dakle ljudi kojima je zumiranje potrebno. Google uzima pristupačnost u obzir, a korisnik koji ne može da pročita broj telefona ne zove.</p>
+    <dl>
+      <dt>Rešenje</dt><dd><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code> — bez ograničenja razmere.</dd>
+      <dt>Trajanje</dt><dd>15 minuta</dd>
+    </dl>
+  </div>
+
+  <div class="finding p2">
+    <div class="finding-head"><span class="badge b-warn">Prioritet 2</span><h4>Mešoviti sadržaj na 6 strana</h4></div>
+    <p>Šest strana učitava resurse preko nebezbednog <code>http://</code> unutar <code>https</code> strane. Pregledač blokira takve resurse ili prikazuje upozorenje o bezbednosti.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Strana</th><th class="num">Resursa preko http</th></tr></thead>
+        <tbody>
+          <tr><td class="url">/krevetac-za-bebu</td><td class="num">6</td></tr>
+          <tr><td class="url">/masaza-za-bebe</td><td class="num">4</td></tr>
+          <tr><td class="url">/ujedi-insekata</td><td class="num">3</td></tr>
+          <tr><td class="url">/proslava-95-og-rodjendana</td><td class="num">2</td></tr>
+          <tr><td class="url">/toplotni-udar</td><td class="num">2</td></tr>
+          <tr><td class="url">/daltonizam</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <dl><dt>Trajanje</dt><dd>1–2 sata</dd></dl>
+  </div>
+
+  <div class="finding p3">
+    <div class="finding-head"><span class="badge b-info">Prioritet 3</span><h4>Nema bezbednosnih HTTP zaglavlja</h4></div>
+    <p>Na svih 437 strana nedostaju <code>Strict-Transport-Security</code>, <code>Content-Security-Policy</code>, <code>X-Frame-Options</code> i <code>X-Content-Type-Options</code>.</p>
+    <p>Iskreno: ovo nije SEO problem i neće podići pozicije. Ali sajt zdravstvene ustanove na kojem pacijenti ostavljaju podatke treba da ima minimum zaglavlja, i to je pet minuta rada na serveru dok se već radi na redirektu.</p>
+    <dl><dt>Trajanje</dt><dd>1 sat, zajedno sa redirektom</dd></dl>
+  </div>
+</div>
+</section>
+
+<!-- ============ 5. INDEKSACIJA ============ -->
+<section id="indeks">
+<div class="wrap">
+  <h2><span class="num">05</span>Indeksacija i struktura URL-ova</h2>
+  <p class="sub">Šta Google sme da vidi, a šta mu samo oduzima vreme.</p>
+
+  <h3>Paginacija bloga je otvorena za indeksiranje</h3>
+  <p>Postoji 20 strana tipa <code>/blog?p=1</code> … <code>/blog?p=20</code>, u dva ogledala — 40 URL-ova. Sve nose <strong>identičan title „Blog"</strong>, imaju 168–237 reči sopstvenog teksta i ne mogu rangirati ni za jedan upit. Ukupno 21 strana na sajtu deli isti title „Blog".</p>
+  <ul>
+    <li>Trošak: 40 URL-ova u budžetu obilaska koji ne donose ništa.</li>
+    <li>Rešenje: dodati <code>rel="canonical"</code> na <code>/blog</code> za sve paginirane strane, ili ih izuzeti iz sitemap-a i zatvoriti u <code>robots.txt</code>. Linkovi sa njih na članke ostaju i nastavljaju da prenose snagu.</li>
+  </ul>
+
+  <h3>Potpuno ravna struktura URL-ova</h3>
+  <p>416 od 437 strana leži na prvom nivou — <code>/kucna-nega-starih</code>, <code>/kateter</code>, <code>/daltonizam</code>, <code>/toplotni-udar</code>. Nema <code>/usluge/</code>, nema <code>/blog/</code>, nema nijednog podnivoa.</p>
+  <p>Zbog toga se komercijalne strane usluga nalaze na istom nivou kao i članak o daltonizmu. Za Google ne postoji nikakav strukturni signal o tome šta je na ovom sajtu važno. Nema ni „breadcrumbs" navigacije koja bi taj signal dala.</p>
+  <div class="callout warn">
+    <p><strong>Napomena o migraciji:</strong> prebacivanje 416 strana u hijerarhiju je rizična operacija i <em>ne</em> predlažemo je u prvoj fazi. Realniji put: ostaviti postojeće adrese, a hijerarhiju signalizirati kroz breadcrumbs sa <code>BreadcrumbList</code> oznakama i kroz interno linkovanje. Promena adresa dolazi u obzir samo za nove strane usluga, ili kasnije, kada postoji merljiva osnova za poređenje.</p>
+  </div>
+
+  <h3>Zastareo sadržaj u title-u</h3>
+  <ul>
+    <li><code>/2016-godina-u-znaku-mobilne-sestre</code></li>
+    <li><code>/mobilna-sestra-vas-neguje-i-u-2018-godini</code></li>
+  </ul>
+  <p>Godina u naslovu signalizira Google-u i korisniku da je sadržaj star osam, odnosno deset godina. Takve strane treba ili osvežiti i prepisati, ili ih ukloniti sa redirektom na relevantnu stranu.</p>
+
+  <h3>Strane bez ijednog internog linka</h3>
+  <p>Dve strane u obilasku nisu dostupne ni sa jedne druge strane sajta (oba pokvarena URL-a iz prethodnog odeljka). Google ih može naći samo preko sitemap-a, kojeg nema.</p>
+</div>
+</section>
+
+<!-- ============ 6. META ============ -->
+<section id="meta">
+<div class="wrap">
+  <h2><span class="num">06</span>Title i meta description</h2>
+  <p class="sub">To je tekst koji korisnik vidi u Google rezultatima pre nego što odluči da klikne. Trenutno radi protiv vas.</p>
+
+  <h3>Dužine title-ova</h3>
+  <div class="bars">
+    <div class="bar-row"><span class="bar-lbl">U normi (30–60 znakova)</span><div class="bar-track"><div class="bar-fill f-ok" style="width:52%"></div></div><span class="bar-val">228</span></div>
+    <div class="bar-row"><span class="bar-lbl">Predugi (preko 60)</span><div class="bar-track"><div class="bar-fill f-crit" style="width:36%"></div></div><span class="bar-val">159</span></div>
+    <div class="bar-row"><span class="bar-lbl">Prekratki (pod 30)</span><div class="bar-track"><div class="bar-fill f-warn" style="width:11%"></div></div><span class="bar-val">50</span></div>
+    <div class="bar-row"><span class="bar-lbl">Nema title-a</span><div class="bar-track"><div class="bar-fill f-crit" style="width:0.3%"></div></div><span class="bar-val">1</span></div>
+  </div>
+
+  <h3>Dužine meta description-a</h3>
+  <div class="bars">
+    <div class="bar-row"><span class="bar-lbl">Predugi (preko 160)</span><div class="bar-track"><div class="bar-fill f-crit" style="width:55%"></div></div><span class="bar-val">239</span></div>
+    <div class="bar-row"><span class="bar-lbl">U normi (70–160)</span><div class="bar-track"><div class="bar-fill f-ok" style="width:34%"></div></div><span class="bar-val">150</span></div>
+    <div class="bar-row"><span class="bar-lbl">Nema description-a</span><div class="bar-track"><div class="bar-fill f-warn" style="width:11%"></div></div><span class="bar-val">48</span></div>
+    <div class="bar-row"><span class="bar-lbl">Prekratki (pod 70)</span><div class="bar-track"><div class="bar-fill f-warn" style="width:0.3%"></div></div><span class="bar-val">1</span></div>
+  </div>
+
+  <div class="callout crit">
+    <h3>Description-i nisu napisani — oni su automatski isečeni iz teksta</h3>
+    <p><strong>331 od 437 description-a sadrži prelome redova.</strong> To je siguran znak da ih nije pisao čovek, nego da ih sistem seče iz prvog pasusa članka. Rezultat u Google rezultatima izgleda ovako:</p>
+    <p style="font-family:var(--mono);font-size:.82rem;background:var(--surface);padding:12px 14px;border-radius:6px;border:1px solid var(--line)">„Kako nastaju dekubitne rane? Dekubitne rane su, najkraće rečeno, rane od dugoročnog ležanja ili sedenja. One se najčešće javljaju kod leže…"</p>
+    <p>Rečenica je presečena nasred, nema poziva na akciju, nema broja telefona, nema reči „Beograd", nema razloga da korisnik klikne na vas a ne na konkurenta ispod. Description ne utiče direktno na pozicije, ali direktno utiče na to koliko ljudi klikne — a to je razlika između 2% i 6% klikova sa iste pozicije.</p>
+  </div>
+
+  <h3>Ostali problemi sa metapodacima</h3>
+  <ul>
+    <li><strong>Brendirani sufiks na 393 od 437 strana.</strong> Svaki title završava sa „- Mobilna sestra". Samo po sebi nije greška, ali pojeda 17 znakova korisnog prostora na stranama gde title već prelazi 60.</li>
+    <li><strong>Pogrešan title zbog greške u sadržaju.</strong> Strana <code>/davanje-terapije-po-nalogu-lekara</code> nosi title <em>„Nega epiziotomije - Mobilna sestra"</em>. To je kopirano sa druge strane. Isti title imaju i dve stvarno različite strane — Google ne zna koja je koja.</li>
+    <li><strong>Duplikati title-ova unutar pravog sajta</strong> (bez računanja ogledala): 21× „Blog", 2× „Nega epiziotomije - Mobilna sestra", 2× „Briga i nega o nepokretnim licima - Mobilna sestra", 2× „Klistiranje u kućnim uslovima - Mobilna sestra", 2× „Mobilna medicinska sestra".</li>
+    <li><strong>Description ponavlja title</strong> na 6 strana — u prikazu se isti tekst vidi dva puta, prostor se gubi.</li>
+    <li><strong>Početna strana nema ni description ni Open Graph oznake.</strong> Kada neko podeli link sajta na Facebook-u ili Viber-u, prikaz je prazan. Za uslugu koja se najviše preporučuje od usta do usta, to je direktno izgubljen posetilac.</li>
+    <li><strong>41 strana ima H1 identičan title-u</strong> — propuštena mogućnost da se pokriju dve različite formulacije upita.</li>
+  </ul>
+
+  <h3>Kako to treba da izgleda</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Strana</th><th>Sada</th><th>Predlog</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="url">/kucna-nega-starih</td>
+        <td>Kućna nega starih <span class="mid">(17 znakova)</span></td>
+        <td>Kućna nega starih lica Beograd — medicinska sestra na adresi <span class="good">(58)</span></td>
+      </tr>
+      <tr>
+        <td class="url">/kucna-nega-dece</td>
+        <td>Kućna nega dece <span class="mid">(15)</span></td>
+        <td>Kućna nega dece u Beogradu — pedijatrijska sestra na adresi <span class="good">(58)</span></td>
+      </tr>
+      <tr>
+        <td class="url">/aplikacija-injekcija</td>
+        <td>Aplikacija injekcija <span class="mid">(20)</span></td>
+        <td>Davanje injekcija kod kuće — Beograd, dolazimo isti dan <span class="good">(54)</span></td>
+      </tr>
+      <tr>
+        <td class="url">/davanje-infuzija</td>
+        <td>Davanje infuzija <span class="mid">(16)</span></td>
+        <td>Davanje infuzija kod kuće u Beogradu — sestra dolazi vama <span class="good">(56)</span></td>
+      </tr>
+      <tr>
+        <td class="url">/kucna-nega-porodilja</td>
+        <td>Kućna nega porodilja <span class="mid">(20)</span></td>
+        <td>Nega porodilja kod kuće Beograd — patronažna sestra <span class="good">(50)</span></td>
+      </tr>
+      <tr>
+        <td class="url">/usluge</td>
+        <td>Usluge <span class="bad">(6)</span></td>
+        <td>Usluge kućne nege i zdravstvene nege — Beograd <span class="good">(46)</span></td>
+      </tr>
+      <tr>
+        <td class="url">/kontakt</td>
+        <td>Kontakt <span class="bad">(7)</span></td>
+        <td>Kontakt — Mobilna sestra, Milentija Popovića 32A, Beograd <span class="good">(56)</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Logika je svuda ista: <em>usluga + grad + razlog da kliknete</em>. Sve u okviru 60 znakova. Description se piše ručno, 140–155 znakova, sa telefonom ili rokom dolaska u tekstu.</p>
+</div>
+</section>
+
+<!-- ============ 7. SADRZAJ ============ -->
+<section id="sadrzaj">
+<div class="wrap">
+  <h2><span class="num">07</span>Struktura sadržaja i H naslovi</h2>
+  <p class="sub">Ovde se nalazi najneobičniji nalaz audita.</p>
+
+  <div class="callout crit">
+    <h3>426 od 438 strana nema ni jedan H2 naslov</h3>
+    <p>Na praktično celom sajtu tekst je jedan neprekinuti blok pod jednim H1. Nema podnaslova, nema strukture, nema podele na teme.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Broj H2 na strani</th><th class="num">Strana</th></tr></thead>
+        <tbody>
+          <tr><td><strong>0</strong></td><td class="num bad">426</td></tr>
+          <tr><td>1</td><td class="num">3</td></tr>
+          <tr><td>2</td><td class="num">2</td></tr>
+          <tr><td>4</td><td class="num">3</td></tr>
+          <tr><td>5</td><td class="num">3</td></tr>
+          <tr><td>7</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Zašto je to važno više nego što zvuči</h3>
+  <ul>
+    <li><strong>Google čita strukturu da bi razumeo o čemu je strana.</strong> Tekst od 900 reči bez podnaslova je za algoritam jedna nerazdvojiva tema. Sa pet podnaslova to je pet tema koje strana pokriva.</li>
+    <li><strong>Bez podnaslova nema izvučenih odgovora.</strong> Google u rezultatima prikazuje gotove odgovore na pitanja — ali izvlači ih iz jasno obeleženih delova teksta. Upiti u ovoj niši su pitanja: „kako se nega dekubitusa radi kod kuće", „koliko traje postoperativna rehabilitacija", „šta je potrebno za zamenu katetera". Sajt ima odgovore na sve to u tekstu. Nijedan nije u formi koju Google ume da izvuče.</li>
+    <li><strong>Korisnik ne čita, nego skenira.</strong> Posetilac koji ovde dolazi je u stresu — član porodice tek izašao iz bolnice, dekubitus, operacija. Takav posetilac traži svoj slučaj pogledom. Zid teksta od 900 reči zatvara.</li>
+  </ul>
+
+  <h3>Obim sadržaja — gde stvarno stoji problem</h3>
+  <div class="bars">
+    <div class="bar-row"><span class="bar-lbl">700+ reči</span><div class="bar-track"><div class="bar-fill f-ok" style="width:64%"></div></div><span class="bar-val">281</span></div>
+    <div class="bar-row"><span class="bar-lbl">400–700 reči</span><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><span class="bar-val">146</span></div>
+    <div class="bar-row"><span class="bar-lbl">200–400 reči</span><div class="bar-track"><div class="bar-fill f-warn" style="width:1%"></div></div><span class="bar-val">4</span></div>
+    <div class="bar-row"><span class="bar-lbl">Pod 200 reči</span><div class="bar-track"><div class="bar-fill f-crit" style="width:2%"></div></div><span class="bar-val">7</span></div>
+  </div>
+  <p>Blog je obimno napisan — 281 strana ima preko 700 reči. <strong>Problem sa tankim sadržajem nije u blogu, nego isključivo na uslužnim stranama.</strong> To je obrnuto od onoga što bi trebalo da bude.</p>
+
+  <h3>Strane sa kritično malo sopstvenog teksta</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Strana</th><th class="num">Sopstvenih reči</th><th class="num">Ukupno na strani</th><th>Komentar</th></tr></thead>
+    <tbody>
+      <tr><td class="url">/kontakt</td><td class="num bad">28</td><td class="num">165</td><td>Nema radnog vremena, nema zone pokrivanja, nema mape, nema forme</td></tr>
+      <tr><td class="url">/kucna-nega-porodilja</td><td class="num bad">39</td><td class="num">130</td><td>Komercijalna strana usluge</td></tr>
+      <tr><td class="url">/savetovaliste</td><td class="num bad">43</td><td class="num">134</td><td>Komercijalna strana usluge</td></tr>
+      <tr><td class="url">/iz-prakse</td><td class="num bad">46</td><td class="num">159</td><td>Rubrika sa 20 slika i skoro bez teksta</td></tr>
+      <tr><td class="url">/ambulantne-usluge</td><td class="num bad">47</td><td class="num">138</td><td>Komercijalna strana usluge — ambulanta u Milentija Popovića</td></tr>
+      <tr><td class="url">/kucna-nega-dece</td><td class="num bad">50</td><td class="num">141</td><td>Komercijalna strana usluge</td></tr>
+      <tr><td class="url">/kucna-nega-bolesnih</td><td class="num bad">109</td><td class="num">200</td><td>Jedna od glavnih usluga</td></tr>
+      <tr><td class="url">/kucna-nega-starih</td><td class="num bad">112</td><td class="num">203</td><td>Najtraženija usluga u niši</td></tr>
+      <tr><td class="url">/blog</td><td class="num mid">168</td><td class="num">720</td><td>Spisak bez uvodnog teksta</td></tr>
+      <tr><td class="url">/usluge</td><td class="num mid">204</td><td class="num">586</td><td>Glavna strana kataloga usluga</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</section>
+
+<!-- ============ 8. LINKOVI ============ -->
+<section id="linkovi">
+<div class="wrap">
+  <h2><span class="num">08</span>Interno linkovanje</h2>
+  <p class="sub">Interni linkovi su način na koji sajt sam sebi govori šta je važno. Trenutno govori pogrešno.</p>
+
+  <h3>Kako je raspoređena snaga linkova</h3>
+  <p>Posle uklanjanja duplikata iz ogledala, na sajtu postoji 4.980 jedinstvenih internih veza. Raspodela je ekstremna:</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Strana</th><th class="num">Internih linkova</th><th>Odakle</th></tr></thead>
+    <tbody>
+      <tr><td class="url">/ (početna)</td><td class="num good">436</td><td>meni na svakoj strani</td></tr>
+      <tr><td class="url">/usluge</td><td class="num good">436</td><td>meni</td></tr>
+      <tr><td class="url">/kontakt</td><td class="num good">436</td><td>meni</td></tr>
+      <tr><td class="url">/o-nama, /press, /iz-prakse, /blog</td><td class="num good">436</td><td>meni</td></tr>
+      <tr><td class="url">/davanje-vitaminske-infuzije-kod-kuce</td><td class="num good">411</td><td>blok „najnoviji tekstovi" u podnožju</td></tr>
+      <tr><td class="url">/5-najbitnijih-elemenata-nege-nepokretnog-pacijenta</td><td class="num good">411</td><td>isti blok</td></tr>
+      <tr><td class="url">/kako-da-rana-brze-zaraste</td><td class="num good">411</td><td>isti blok</td></tr>
+      <tr><td colspan="3" style="background:var(--surface-2);font-size:.8rem;color:var(--ink-3)">— ovde se raspodela prekida —</td></tr>
+      <tr><td class="url">/davanje-infuzija</td><td class="num mid">7</td><td>katalog usluga</td></tr>
+      <tr><td class="url">/kateter</td><td class="num mid">3</td><td>katalog usluga</td></tr>
+      <tr><td class="url">/kucna-nega-starih</td><td class="num bad">1</td><td>samo katalog usluga</td></tr>
+      <tr><td class="url">/kucna-nega-bolesnih</td><td class="num bad">1</td><td>samo katalog usluga</td></tr>
+      <tr><td class="url">/kucna-nega-dece</td><td class="num bad">1</td><td>samo katalog usluga</td></tr>
+      <tr><td class="url">/kucna-nega-porodilja</td><td class="num bad">1</td><td>samo katalog usluga</td></tr>
+      <tr><td class="url">/ambulantne-usluge</td><td class="num bad">1</td><td>samo katalog usluga</td></tr>
+      <tr><td class="url">/savetovaliste</td><td class="num bad">1</td><td>samo katalog usluga</td></tr>
+      <tr><td class="url">/rekli-su-o-nama</td><td class="num bad">1</td><td>1834 reči preporuka pacijenata — jedan link</td></tr>
+      <tr><td class="url">/biografija</td><td class="num bad">1</td><td>stručna biografija — jedan link</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout crit">
+    <p><strong>377 od 437 strana ima najviše dva interna linka.</strong> Tri blog teksta koja slučajno stoje u bloku „najnoviji tekstovi" dobijaju po 411 linkova sa celog sajta. Strana „Kućna nega starih lica" — najtraženija usluga u ovoj niši u Beogradu — dobija jedan.</p>
+    <p>Sajt, dakle, svim svojim linkovima tvrdi da su najvažnije stvari na njemu tri stara blog teksta.</p>
+  </div>
+
+  <h3>Tekstovi linkova</h3>
+  <p>4.230 internih linkova nema nikakav tekst (to su linkovi sa slika i ikonica). Preostali tekstovi su skoro isključivo nazivi menija: „POČETNA", „O NAMA", „USLUGE", „PRESS", „KONTAKT", po 1.743 puta svaki. 44 linka imaju tekst „ovde".</p>
+  <p>Praktično ne postoji ni jedan link sa tekstom koji opisuje ono na šta vodi — a to je za Google jedan od najjasnijih signala o čemu je ciljna strana.</p>
+
+  <h3>Izlazni linkovi odnose snagu sa sajta</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Odredište</th><th class="num">Linkova</th><th>Napomena</th></tr></thead>
+    <tbody>
+      <tr><td><code>facebook.com</code></td><td class="num">969</td><td>podnožje + deljenja, bez <code>nofollow</code></td></tr>
+      <tr><td><code>instagram.com</code></td><td class="num">877</td><td>bez <code>nofollow</code></td></tr>
+      <tr><td><code>linkedin.com</code></td><td class="num">873</td><td>bez <code>nofollow</code></td></tr>
+      <tr><td><code>twitter.com</code></td><td class="num">873</td><td>bez <code>nofollow</code></td></tr>
+      <tr><td><code>webfactory.rs</code></td><td class="num bad">873</td><td>potpis izvođača u podnožju — na svakoj strani sajta</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Link „Developed by Web Factory" stoji u podnožju svake strane i prenosi snagu sa svih 437 strana na sajt izvođača. To nije nenormalno u praksi izrade sajtova, ali treba da nosi <code>rel="nofollow"</code> — inače sajt izvođača dobija sa vas 437 linkova, a vi ne dobijate ništa.</p>
+  <p>U pravim linkovima u tekstovima (<code>rts.rs</code>, <code>politika.rs</code>, <code>ekapija.com</code>, <code>youtube.com</code>) nema problema — oni su na mestu i daju kontekst.</p>
+
+  <h3>Šta treba uraditi</h3>
+  <ol>
+    <li><strong>Blok povezanih usluga na svakoj uslužnoj strani.</strong> 3–5 linkova na srodne usluge sa opisnim tekstom. „Nega stome kod kuće", a ne „pročitajte više".</li>
+    <li><strong>Linkovi iz blog tekstova na usluge.</strong> Postoji preko 400 tekstova koji pokrivaju tačno iste teme kao usluge. Tekst o dekubitusu treba da vodi na uslugu nege dekubitusa — sada ne vodi. To je najjeftiniji način da se snaga preusmeri tamo gde donosi pozive.</li>
+    <li><strong>Blok „najnoviji tekstovi" u podnožju zameniti blokom najvažnijih usluga.</strong> Tri blog teksta koja sada dobijaju 411 linkova ne donose pozive.</li>
+    <li><strong>Linkovati preporuke i biografiju sa svake uslužne strane.</strong> 1834 reči preporuka pacijenata i stručna biografija su najjači signali poverenja koje sajt ima, a praktično su nedostupni.</li>
+    <li><strong>Breadcrumbs navigacija</strong> na svim stranama, sa <code>BreadcrumbList</code> oznakama.</li>
+    <li><strong><code>rel="nofollow"</code></strong> na link izvođača i na linkove društvenih mreža u podnožju.</li>
+  </ol>
+</div>
+</section>
+
+<!-- ============ 9. USLUGE ============ -->
+<section id="usluge">
+<div class="wrap">
+  <h2><span class="num">09</span>Uslužne strane i komercijalni signali</h2>
+  <p class="sub">Deo audita koji se najdirektnije odnosi na broj poziva.</p>
+
+  <div class="callout crit">
+    <h3>Katalog usluga vodi na blog članke</h3>
+    <p>Strana <code>/usluge</code> sadrži 31 poziciju u katalogu usluga. Značajan deo tih linkova ne vodi na stranu usluge, nego na informativni blog tekst:</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Tekst u katalogu usluga</th><th>Vodi na</th></tr></thead>
+        <tbody>
+          <tr><td>Terapija rane i previjanje rana</td><td class="url">/10-razloga-zasto-previjanje-rane-treba-prepustiti-strucnjaku</td></tr>
+          <tr><td>Postoperativna rehabilitacija</td><td class="url">/postoperativna-rehabilitacija-proces-koji-pocinje-pre-pocetka</td></tr>
+          <tr><td>Nega kolostoma i zamena diska stome</td><td class="url">/zivot-sa-stomom</td></tr>
+          <tr><td>Lečenje dekubitusa</td><td class="url">/lecenje-dekubita-kod-kuce</td></tr>
+          <tr><td>Zamena urinarnih katetera</td><td class="url">/plasiranje-i-zamena-urinarnih-katetera-u-kucnim-uslovima</td></tr>
+          <tr><td>Nabavka antidekubitnih dušeka</td><td class="url">/najbolji-lek-za-dekubitus-antidekubitni-dusek</td></tr>
+          <tr><td>Pomoć pri kretanju i ortopedska pomagala</td><td class="url">/uz-ortopedska-pomagala-vam-je-ipak-potrebna-strucna-pomoc</td></tr>
+          <tr><td>Palijativno zbrinjavanje</td><td class="url">/kako-palijativno-zbrinjavanje-poboljsava-kvalitet-zivota</td></tr>
+          <tr><td>Previjanje rana</td><td class="url">/previjanje-rana-kod-kuce-odgovori-na-najcesca-pitanja</td></tr>
+          <tr><td>Merenje šećera u krvi</td><td class="url">/zivot-sa-dijabetesom-kucna-nega-koju-morate-znati</td></tr>
+          <tr><td>Rešavanje mastitisa</td><td class="url">/kako-sam-se-resila-mastitisa</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Posetilac koji u katalogu usluga klikne na „Previjanje rana" očekuje da vidi šta usluga obuhvata, koliko košta i kako je zakazati. Dobija tekst „10 razloga zašto previjanje rane treba prepustiti stručnjaku".</p>
+    <p>Za Google je efekat isti: za upit <em>„previjanje rana Beograd cena"</em> sajt nema ni jednu stranu koja na taj upit odgovara. Ima tekst o tome zašto je previjanje važno.</p>
+  </div>
+
+  <h3>Komercijalni elementi — šta postoji i šta ne</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Element</th><th>Status</th><th>Napomena</th></tr></thead>
+    <tbody>
+      <tr><td>Telefon vidljiv i klikabilan</td><td><span class="badge b-ok">Ima</span></td><td>Tri broja, poziv na akciju „POZOVITE ODMAH" na početnoj</td></tr>
+      <tr><td>Adresa ambulante</td><td><span class="badge b-ok">Ima</span></td><td>Milentija Popovića 32/A, lok. 35, 11070 Beograd</td></tr>
+      <tr><td>Preporuke pacijenata</td><td><span class="badge b-ok">Ima</span></td><td>Sa imenima, godinama i opštinama — vredan materijal, ali zakopan</td></tr>
+      <tr><td>Press arhiva</td><td><span class="badge b-ok">Ima</span></td><td>Linkovi na RTS, Politiku, eKapiju, Telegraf i druge</td></tr>
+      <tr><td>Stručna biografija</td><td><span class="badge b-ok">Ima</span></td><td>Jedan interni link</td></tr>
+      <tr><td>Cene ili cenovnik</td><td><span class="badge b-crit">Nema</span></td><td>Nigde na sajtu nema ni jedne cifre</td></tr>
+      <tr><td>Forma za zakazivanje</td><td><span class="badge b-crit">Nema</span></td><td>Samo telefon i e-mail</td></tr>
+      <tr><td>Zona pokrivanja po opštinama</td><td><span class="badge b-crit">Nema</span></td><td>Samo „cela teritorija Beograda" u jednoj rečenici</td></tr>
+      <tr><td>Radno vreme</td><td><span class="badge b-crit">Nema</span></td><td>Za uslugu nege ključno — rade li noću, nedeljom, praznicima</td></tr>
+      <tr><td>Rok dolaska</td><td><span class="badge b-crit">Nema</span></td><td>Najčešće pitanje korisnika u panici</td></tr>
+      <tr><td>Licence i registracija</td><td><span class="badge b-warn">Delimično</span></td><td>Za zdravstvenu uslugu to je odlučujući signal poverenja</td></tr>
+      <tr><td>Tim i kvalifikacije sestara</td><td><span class="badge b-warn">Delimično</span></td><td>Konkurencija objavljuje profile sa fotografijama i zvanjima</td></tr>
+      <tr><td>Ocene i broj ocena</td><td><span class="badge b-crit">Nema</span></td><td>Bez schema oznaka se ne prikazuju u Google rezultatima</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <h3>O cenama</h3>
+    <p>Razumemo zašto cene nisu objavljene — usluga je individualna i zavisi od stanja pacijenta. Ali upit <em>„kućna nega starih lica Beograd cena"</em> je jedan od najčešćih u niši, a konkurent <code>minutenurse.rs</code> objavljuje pakete: 11.500, 23.000 i 34.500 RSD mesečno. Agregatori tipa <code>navidiku.rs</code> i <code>mirandre.com</code> rangiraju upravo zato što imaju stranu sa rečju „cena" u naslovu.</p>
+    <p>Ne predlažemo fiksni cenovnik. Predlažemo stranu „Cene usluga" sa cenom po poseti od–do, po satu, i paketima, plus jasnu rečenicu da se konačna cena određuje nakon besplatne procene. To pokriva upit, filtrira neozbiljne pozive i gradi poverenje — korisnik koji ne vidi nijednu cifru pretpostavlja najgore.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 10. LOKALNI ============ -->
+<section id="lokalni">
+<div class="wrap">
+  <h2><span class="num">10</span>Lokalni SEO za Beograd</h2>
+  <p class="sub">Najveća neiskorišćena prilika na celom sajtu.</p>
+
+  <div class="stats">
+    <div class="stat is-crit"><div class="v">2</div><div class="k">Od 437 title-ova sadrži „Beograd"</div></div>
+    <div class="stat is-crit"><div class="v">4</div><div class="k">Od 437 description-a sadrži „Beograd"</div></div>
+    <div class="stat is-crit"><div class="v">0</div><div class="k">Strana za opštine Beograda</div></div>
+    <div class="stat is-crit"><div class="v">0</div><div class="k">LocalBusiness schema oznaka</div></div>
+  </div>
+
+  <p>Usluga se pruža na terenu, u jednom gradu, i to je rečeno jednom — u jednoj rečenici na početnoj strani: <em>„Terensko-patronažna služba je dostupna na celoj teritoriji Beograda."</em> Dalje od toga sajt praktično ne govori gde radi.</p>
+  <p>Ljudi pritom ne traže „kućnu negu". Traže „kućna nega starih lica Novi Beograd", „medicinska sestra Vračar", „previjanje rana Zemun", „patronažna sestra Voždovac". Sajt ne odgovara ni na jedan takav upit, iako uslugu pruža na svim tim lokacijama.</p>
+
+  <h3>Šta treba uraditi</h3>
+  <ol>
+    <li><strong>„Beograd" u title i description svih komercijalnih strana.</strong> Najjeftinija izmena sa najvećim efektom u celom dokumentu.</li>
+    <li><strong>Strana „Zona pokrivanja"</strong> sa spiskom svih opština, vremenima dolaska i kontaktom. Postojeće preporuke pacijenata već imaju opštine — Novi Beograd, Borča, Miljakovac — to je gotov materijal.</li>
+    <li><strong>Strane za opštine sa najvećom gustinom starijeg stanovništva.</strong> Ne 17 šablonskih kopija — 5–7 pravih strana za Novi Beograd, Vračar, Zvezdaru, Voždovac, Čukaricu, Zemun, sa stvarnim sadržajem: vreme dolaska, pokrivene adrese i ustanove, lokalni slučajevi iz prakse, cene u toj zoni.</li>
+    <li><strong>Google Business Profile.</strong> Mora biti preuzet, popunjen, sa kategorijom, radnim vremenom, zonom usluge, fotografijama ambulante i tima, i aktivnim prikupljanjem ocena. Za lokalnu uslugu Google karta često donosi više poziva nego organski rezultati. Bez pristupa profilu ne možemo oceniti trenutno stanje.</li>
+    <li><strong>NAP konzistentnost.</strong> Isti naziv, adresa i telefon na sajtu, u Google profilu i u katalozima. Sajt navodi tri različita telefona na različitim mestima — treba odrediti jedan glavni.</li>
+    <li><strong>Prisustvo u lokalnim katalozima.</strong> <code>navidiku.rs</code>, <code>mirandre.com</code>, <code>klikdofirme.com</code>, <code>halooglasi.com</code> trenutno rangiraju iznad svih pravih firmi u niši. Firma je već u nekima od njih — profile treba popuniti do kraja i dodati ocene.</li>
+  </ol>
+</div>
+</section>
+
+<!-- ============ 11. SCHEMA ============ -->
+<section id="schema">
+<div class="wrap">
+  <h2><span class="num">11</span>Strukturirani podaci</h2>
+  <p class="sub">Nula strana sa schema.org oznakama. Za zdravstvenu uslugu to je ozbiljan propust.</p>
+
+  <p>Strukturirani podaci su način da se Google-u mašinski čitljivo kaže šta je firma, šta radi, gde radi, koliko to košta i šta pacijenti kažu. Bez njih Google sve to mora da nagađa iz teksta — a u zdravstvenoj niši, gde kriterijumi za ocenu kvaliteta i pouzdanosti važe strože nego bilo gde, nagađanje ide protiv vas.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Tip oznake</th><th>Gde</th><th>Šta daje</th></tr></thead>
+    <tbody>
+      <tr><td><code>MedicalBusiness</code> + <code>LocalBusiness</code></td><td>sve strane</td><td>Adresa, telefon, radno vreme, zona usluge, geografske koordinate — osnova za prikaz u Google karti</td></tr>
+      <tr><td><code>MedicalProcedure</code> / <code>Service</code></td><td>svaka uslužna strana</td><td>Veza između usluge i firme, opis procedure, cenovni opseg</td></tr>
+      <tr><td><code>FAQPage</code></td><td>uslužne strane i blog</td><td>Prikaz pitanja i odgovora direktno u rezultatima pretrage — zauzima višestruko više prostora</td></tr>
+      <tr><td><code>Review</code> + <code>AggregateRating</code></td><td>preporuke i uslužne strane</td><td>Zvezdice u rezultatima. 1834 reči preporuka sa imenima su gotov materijal</td></tr>
+      <tr><td><code>BreadcrumbList</code></td><td>sve strane</td><td>Putanja u rezultatima umesto golog URL-a, i signal o hijerarhiji koju sajt nema</td></tr>
+      <tr><td><code>Article</code> + <code>Person</code> (autor)</td><td>400+ blog tekstova</td><td>Stručnost autora — u zdravstvenoj niši jedan od najvažnijih signala</td></tr>
+      <tr><td><code>Open Graph</code> + <code>Twitter Card</code></td><td>sve strane</td><td>Normalan prikaz pri deljenju linka. Početna strana ih sada nema uopšte</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>Autorstvo i stručnost.</strong> Sajt ima biografiju i press arhivu sa pojavljivanjima u nacionalnim medijima — materijal kakav u ovoj niši malo ko ima. Ništa od toga nije povezano sa tekstovima. 400+ tekstova o medicinskoj nezi su objavljeni bez naznačenog autora i bez kvalifikacija. Potpisivanje tekstova imenom i zvanjem, sa linkom na biografiju i <code>Person</code> oznakama, je jedna od najkorisnijih stvari koje se mogu uraditi za zdravstveni sajt.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 12. SLIKE ============ -->
+<section id="slike">
+<div class="wrap">
+  <h2><span class="num">12</span>Slike, brzina i bezbednost</h2>
+
+  <h3>Slike</h3>
+  <p>Na sajtu je 3.446 slika, od kojih <strong>486 nema <code>alt</code> atribut</strong>. Problem je prisutan na praktično svakoj strani. Najgore stoji strana <code>/press</code> — 23 od 32 slike bez opisa.</p>
+  <ul>
+    <li><code>alt</code> je ono što Google čita umesto slike i jedini način da se rangira u pretrazi slika.</li>
+    <li><code>alt</code> je takođe ono što čitač ekrana izgovara slepom ili slabovidom korisniku. Na sajtu zdravstvene nege to nije opcija.</li>
+    <li>Nazivi datoteka su, za razliku od toga, uredni i opisni (<code>mobilna-sestra-aplikacija-injekcija-02.jpg</code>) — to je dobra osnova, treba je samo preneti u <code>alt</code>.</li>
+  </ul>
+
+  <h3>Brzina</h3>
+  <p>Precizno merenje Core Web Vitals nije bilo deo ovog obilaska i radiće se u prvoj fazi, sa podacima o stvarnim korisnicima iz Search Console. Iz strukture sajta se već vidi nekoliko stvari koje treba proveriti:</p>
+  <ul>
+    <li>Na početnoj strani je slajder sa tri slike — tipičan izvor lošeg LCP rezultata na mobilnom telefonu.</li>
+    <li>3.446 slika i nije jasno da li se koriste moderni formati (WebP/AVIF) i odloženo učitavanje.</li>
+    <li>Blokirajući CSS i JavaScript u <code>&lt;head&gt;</code> — standardno za ovakav šablon.</li>
+  </ul>
+
+  <h3>Bezbednost</h3>
+  <p>HTTPS radi na svim stranama, i to je najvažnije. Nedostaju bezbednosna zaglavlja (opisano u odeljku 04) i treba ukloniti mešoviti sadržaj sa šest strana.</p>
+
+  <h3>Jezik sajta</h3>
+  <p>Sajt je samo na srpskom, latinicom, i <code>hreflang</code> oznaka nema. <strong>To trenutno nije problem</strong> — za sajt na jednom jeziku <code>hreflang</code> nije potreban i alat ga prijavljuje na svih 875 strana bez pravog osnova.</p>
+  <p>Zanimljivije je nešto drugo: u Beogradu živi veliki broj stranaca, a potreba za kućnom negom se ne razlikuje po jeziku. Engleska verzija nekoliko ključnih strana (<em>home nursing care Belgrade</em>, <em>private nurse Belgrade</em>) je niša u kojoj praktično nema konkurencije, a klijenti su po pravilu platežno sposobniji. To je prilika za drugu polovinu godine, ne za prvu fazu.</p>
+</div>
+</section>
+
+<!-- ============ 13. KONKURENCIJA ============ -->
+<section id="konkurencija">
+<div class="wrap">
+  <h2><span class="num">13</span>Konkurentsko okruženje</h2>
+  <p class="sub">Ko zauzima prve pozicije za ključne upite u Beogradu i čime.</p>
+
+  <h3>Dve vrste konkurenata</h3>
+  <p><strong>Agregatori</strong> — <code>navidiku.rs</code>, <code>mirandre.com</code>, <code>halooglasi.com</code>, <code>klikdofirme.com</code>, <code>utrenu.com</code>. Oni zauzimaju vrh rezultata za upite tipa „kućna nega Beograd cena" i „zdravstvena nega Beograd cenovnik". Ne možete ih pobediti na njihovom terenu, ali možete biti u njima sa potpunim profilom i ocenama, i možete im uzeti upite koje oni ne pokrivaju dobro — konkretne usluge i konkretne opštine.</p>
+
+  <p><strong>Direktni konkurenti</strong> — firme za kućnu negu u Beogradu. Najozbiljniji od pregledanih je <code>minutenurse.rs</code>.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Element</th><th>mobilnasestra.rs</th><th>minutenurse.rs</th></tr></thead>
+    <tbody>
+      <tr><td>Objavljen cenovnik</td><td class="bad">Nema</td><td class="good">Tri paketa: 11.500 / 23.000 / 34.500 RSD mesečno + puni cenovnik</td></tr>
+      <tr><td>Strane usluga</td><td class="mid">6 pravih strana, 130–203 reči</td><td class="good">14 podstrana usluga + 9 podstrana ambulante</td></tr>
+      <tr><td>Struktura URL-ova</td><td class="bad">Ravna, 416 strana na prvom nivou</td><td class="good">Hijerarhija sa podnivoima</td></tr>
+      <tr><td>Tim i kvalifikacije</td><td class="mid">Biografija sa jednim internim linkom</td><td class="good">Profili: menadžer, kardiolog, anesteziolog, defektolog, nutricionista</td></tr>
+      <tr><td>Blog</td><td class="good">400+ tekstova, veliki arhiv</td><td class="mid">Aktivan, manji obim, redovno objavljuje 2026.</td></tr>
+      <tr><td>Press i mediji</td><td class="good">RTS, Politika, eKapija, Telegraf, Prva, BizLife</td><td class="mid">Dve ambasade u „preporukama", bez citata</td></tr>
+      <tr><td>Preporuke pacijenata</td><td class="good">1834 reči, sa imenima i opštinama</td><td class="bad">Nema pravih preporuka</td></tr>
+      <tr><td>Poziv na akciju</td><td class="mid">„Pozovite odmah" + telefon</td><td class="good">„Zakažite BESPLATNE konsultacije" + forma</td></tr>
+      <tr><td>schema.org</td><td class="bad">Nema</td><td class="bad">Nema</td></tr>
+      <tr><td>Strane po opštinama</td><td class="bad">Nema</td><td class="bad">Nema</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <h3>Zaključak o konkurenciji</h3>
+    <p>Konkurencija vas pobeđuje u <strong>komercijalnoj strukturi</strong>: ima cenovnik, ima razvijene strane usluga, ima predstavljen tim, ima formu za zakazivanje. To su rešive stvari i ne zahtevaju godine rada.</p>
+    <p>Vi pobeđujete u <strong>sadržaju i autoritetu</strong>: 400+ autorskih tekstova, prave preporuke sa imenima pacijenata, pojavljivanja u nacionalnim medijima. To je ono što se ne može kupiti ni nadoknaditi za par meseci.</p>
+    <p>Pritom <strong>nijedan igrač u niši nema strukturirane podatke, ni strane po opštinama Beograda.</strong> To je otvoreno polje — ko ga prvi zauzme, uzima upite tipa „medicinska sestra Novi Beograd" bez borbe.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 14. PRILIKE ============ -->
+<section id="prilike">
+<div class="wrap">
+  <h2><span class="num">14</span>Neiskorišćene prilike</h2>
+  <p class="sub">Ne greške — stvari koje konkurencija ne radi, a mogu se uzeti.</p>
+
+  <div class="two">
+    <div class="card">
+      <p class="card-title">Strane po opštinama Beograda</p>
+      <p>Nijedan konkurent to nema. 5–7 pravih strana za opštine sa najstarijim stanovništvom pokriva čitavu klasu upita bez konkurencije.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">Strana sa cenama</p>
+      <p>Upit sa rečju „cena" je jedan od najčešćih u niši. Sada ga pokrivaju isključivo agregatori i jedan konkurent.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">400+ tekstova kao izvor poziva</p>
+      <p>Arhiv već donosi čitaoce zainteresovane za temu. Nijedan tekst ih ne vodi do usluge. Dodavanje ciljanih linkova i poziva na akciju u postojeće tekstove ne zahteva pisanje novog sadržaja.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">Pitanja i odgovori sa schema oznakama</p>
+      <p>Sve usluge nose tipična pitanja — koliko traje, koliko košta, šta treba pripremiti, dolazite li noću. Sa <code>FAQPage</code> oznakama ta pitanja se prikazuju direktno u Google rezultatima.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">Press arhiva kao signal autoriteta</p>
+      <p>Pojavljivanja na RTS-u i u Politici sada stoje na jednoj strani. Treba ih povezati sa uslugama i biografijom i označiti strukturirano.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">Engleska verzija za strance u Beogradu</p>
+      <p>Niša bez konkurencije, platežno sposobnija publika. Realno za drugu polovinu prve godine.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">Google Business Profile i ocene</p>
+      <p>Za lokalnu uslugu karta često donosi više poziva od organskih rezultata. Potreban je sistem za prikupljanje ocena od zadovoljnih pacijenata.</p>
+    </div>
+    <div class="card">
+      <p class="card-title">Video sadržaj</p>
+      <p>Na sajtu ima 12 linkova na YouTube. Kratki praktični video materijali (kako pripremiti sobu za nepokretnog pacijenta) rade i u pretrazi i u konverziji poverenja.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 15. PLAN ============ -->
+<section id="plan">
+<div class="wrap">
+  <h2><span class="num">15</span>Plan rada po fazama</h2>
+  <p class="sub">Redosled nije slučajan: prvo se zatvaraju tehnička curenja, pa se onda ulaže u rast. Obrnuto bi značilo gradnju na nerešenim temeljima.</p>
+
+  <div class="phase">
+    <div class="phase-head"><span class="per">Mesec 1</span><h3>Temelj i zaustavljanje curenja</h3></div>
+    <p class="goal">Cilj: sajt prestaje da radi protiv sebe. Merljiv rezultat — jedna verzija domena, prijavljen sitemap, ispravljene greške u kodu.</p>
+    <ul>
+      <li>Pristup Search Console i Analytics-u, provera i prijava obe verzije domena, revizija ovog audita sa stvarnim podacima o upitima i pozicijama</li>
+      <li><strong>301 redirekt www → bez www</strong> za sve strane, provera jednog skoka sa http na https</li>
+      <li>Generisanje i prijava <code>sitemap.xml</code>, uređivanje <code>robots.txt</code></li>
+      <li>Ispravka pokvarenih linkova koji generišu strane-smeće</li>
+      <li>Normalizacija URL-ova na mala slova, redirekt sa verzije sa velikim slovom</li>
+      <li>Canonical na paginaciju bloga (40 URL-ova izlazi iz indeksa)</li>
+      <li>Ispravka meta viewport-a — omogućeno zumiranje na telefonu</li>
+      <li>Uklanjanje mešovitog sadržaja sa 6 strana, dodavanje bezbednosnih zaglavlja</li>
+      <li><code>rel="nofollow"</code> na link izvođača i društvene mreže u podnožju</li>
+      <li>Open Graph i Twitter Card oznake na sve strane, počevši od početne</li>
+      <li>Merenje Core Web Vitals i tehnički izveštaj</li>
+      <li>Revizija Google Business Profile-a i plan za ocene</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="per">Mesec 2</span><h3>Komercijalne strane i geografija</h3></div>
+    <p class="goal">Cilj: strane koje treba da donose pozive postaju najjače strane na sajtu.</p>
+    <ul>
+      <li><strong>Prepisivanje 6 glavnih uslužnih strana</strong> — kućna nega starih, bolesnih, dece, porodilja, ambulantne usluge, savetovalište. Sa 130–203 na 800–1200 reči: šta usluga obuhvata, kako izgleda poseta, ko je izvodi, koliko traje, cenovni opseg, pitanja i odgovori, preporuke, poziv na akciju</li>
+      <li><strong>Nove strane usluga</strong> za pozicije koje sada vode na blog: previjanje rana, nega stome, palijativno zbrinjavanje, postoperativna rehabilitacija, zamena katetera, merenje šećera. Blog tekstovi ostaju i linkuju na nove strane</li>
+      <li><strong>Prerada strane <code>/usluge</code></strong> u pravi katalog sa opisima i strukturom</li>
+      <li><strong>Title i description na svih 437 strana</strong> — ručno za 40 komercijalnih i najposećenijih, po uređenom šablonu za blog arhiv. „Beograd" u svim komercijalnim</li>
+      <li><strong>H2 struktura</strong> na svim komercijalnim stranama i 50 najvažnijih blog tekstova</li>
+      <li><strong>Strana „Cene usluga"</strong> — cena po poseti i po satu, paketi, besplatna procena</li>
+      <li><strong>Strana „Zona pokrivanja"</strong> sa opštinama i vremenima dolaska</li>
+      <li>Prerada strane <code>/kontakt</code>: radno vreme, mapa, forma za zakazivanje, zona, rok dolaska</li>
+      <li><code>alt</code> atributi na 486 slika</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="per">Mesec 3</span><h3>Struktura, linkovanje, strukturirani podaci</h3></div>
+    <p class="goal">Cilj: snaga sajta ide na strane koje donose pozive, a Google tačno zna šta je firma i šta radi.</p>
+    <ul>
+      <li><strong>Prerada internog linkovanja.</strong> Blok povezanih usluga na svakoj uslužnoj strani; linkovi iz blog tekstova na odgovarajuće usluge; blok u podnožju sa uslugama umesto sa tri blog teksta; preporuke i biografija linkovane sa svih komercijalnih strana</li>
+      <li><strong>Breadcrumbs navigacija</strong> sa <code>BreadcrumbList</code> oznakama</li>
+      <li><strong>schema.org</strong>: <code>MedicalBusiness</code>, <code>LocalBusiness</code>, <code>Service</code>, <code>FAQPage</code>, <code>Review</code>, <code>AggregateRating</code>, <code>Article</code> sa autorom</li>
+      <li><strong>Autorstvo</strong>: potpisivanje tekstova imenom i zvanjem, povezivanje sa biografijom</li>
+      <li><strong>Prve 3 strane po opštinama</strong> sa pravim sadržajem</li>
+      <li>Osvežavanje ili uklanjanje zastarelog sadržaja (2016, 2018)</li>
+      <li>Optimizacija brzine prema izmerenim podacima</li>
+      <li>Popunjavanje profila u lokalnim katalozima, NAP konzistentnost</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="per">Mesec 4–6</span><h3>Rast</h3></div>
+    <p class="goal">Cilj: širenje pokrivenosti upita i sistematično prikupljanje spoljnih signala.</p>
+    <ul>
+      <li>Preostale strane po opštinama Beograda</li>
+      <li>Sadržajni plan na osnovu stvarnih upita iz Search Console — teme koje sajt skoro rangira, a ne pokriva do kraja</li>
+      <li>Osvežavanje postojećeg arhiva: spajanje sličnih tekstova, dopuna najboljih, uklanjanje slabih</li>
+      <li>Rad na ocenama i preporukama kao stalnom procesu</li>
+      <li>Spoljni linkovi: medicinski portali, udruženja, lokalni mediji, saradnja sa ustanovama</li>
+      <li>Pilot engleske verzije ključnih strana</li>
+      <li>Rad na konverziji: šta posetilac radi na sajtu, gde odustaje, šta povećava broj poziva</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- ============ 16. PONUDA ============ -->
+<section id="ponuda">
+<div class="wrap">
+  <h2><span class="num">16</span>Ponuda</h2>
+
+  <div class="price-box">
+    <div class="price-num">300 € <span class="price-per">/ mesečno</span></div>
+    <p style="margin-top:14px;max-width:60ch">Kompletno SEO vođenje sajta <strong>mobilnasestra.rs</strong> — rad celog tima, bez dodatnih naknada za pojedinačne zadatke iz plana.</p>
+  </div>
+
+  <h3>Tim koji radi na projektu</h3>
+  <div class="team">
+    <div class="team-m"><b>Vođa projekta / SEO strateg</b><span>Strategija, prioriteti, semantika, analiza konkurencije, izveštavanje</span></div>
+    <div class="team-m"><b>Tehnički SEO specijalista</b><span>Redirekti, sitemap, canonical, schema.org, brzina, zadaci za programera</span></div>
+    <div class="team-m"><b>Copywriter</b><span>Strane usluga, title i description, H struktura, pitanja i odgovori, tekstovi na srpskom</span></div>
+    <div class="team-m"><b>Specijalista za linkove i lokalni SEO</b><span>Interno linkovanje, Google Business Profile, katalozi, spoljni linkovi</span></div>
+  </div>
+
+  <h3>Šta je uključeno u cenu</h3>
+  <ul>
+    <li>Svi poslovi iz plana po fazama, u navedenom obimu</li>
+    <li>Tehnički zadaci i specifikacije za vašeg programera, sa proverom izvršenog</li>
+    <li>Pisanje i optimizacija tekstova na srpskom jeziku</li>
+    <li>Mesečni izveštaj sa urađenim poslovima, promenama pozicija i planom za sledeći mesec</li>
+    <li>Stalna veza — pitanja, konsultacije, reakcija na promene</li>
+    <li>Vođenje Google Business Profile-a i profila u katalozima</li>
+  </ul>
+
+  <h3>Šta nije uključeno</h3>
+  <ul>
+    <li>Izmene u kodu sajta — radi vaš programer po našim zadacima. Ako programera nema, možemo preuzeti i taj deo, za doplatu, prema obimu</li>
+    <li>Plaćeno oglašavanje (Google Ads) — odvojena usluga</li>
+    <li>Plaćeni spoljni linkovi i objave u medijima — budžet se dogovara posebno, ako se za tim pokaže potreba</li>
+    <li>Izrada videa i fotografisanje</li>
+  </ul>
+
+  <div class="callout">
+    <h3>O rokovima — iskreno</h3>
+    <p>SEO u zdravstvenoj niši ne daje rezultat za mesec dana. Google prema sajtovima koji se tiču zdravlja primenjuje strože kriterijume i sporije im veruje. Realan horizont je:</p>
+    <ul>
+      <li><strong>1–2 meseca:</strong> tehničko stanje uređeno, sajt prestaje da gubi, prvi pomeraji na niskokonkurentnim upitima</li>
+      <li><strong>3–4 meseca:</strong> vidljiv rast prikaza i klikova, uslužne strane ulaze u rezultate za upite sa „Beograd"</li>
+      <li><strong>6 meseci:</strong> merljiv rast poziva sa pretrage, pozicije na glavnim komercijalnim upitima</li>
+      <li><strong>9–12 meseci:</strong> pretraga postaje predvidiv kanal dolaska pacijenata</li>
+    </ul>
+    <p>Ne obećavamo određenu poziciju za određeni datum — to niko ne može pošteno. Obećavamo obim rada, transparentan izveštaj svakog meseca i to da ćete u svakom momentu znati šta je urađeno i zašto.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 17. KPI ============ -->
+<section id="kpi">
+<div class="wrap">
+  <h2><span class="num">17</span>KPI i izveštavanje</h2>
+  <p class="sub">Čime se meri da rad daje rezultat.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Pokazatelj</th><th>Sada</th><th>Cilj</th></tr></thead>
+    <tbody>
+      <tr><td>Verzija domena u indeksu</td><td class="bad">dve</td><td class="good">jedna, mesec 1</td></tr>
+      <tr><td>Strana u <code>sitemap.xml</code></td><td class="bad">nema sitemap-a</td><td class="good">437, prijavljen, mesec 1</td></tr>
+      <tr><td>Uslužne strane sa 800+ reči</td><td class="bad">0 od 6</td><td class="good">6 od 6, mesec 2</td></tr>
+      <tr><td>Komercijalne strane sa „Beograd" u title-u</td><td class="bad">2</td><td class="good">sve, mesec 2</td></tr>
+      <tr><td>Strane sa H2 strukturom</td><td class="bad">12</td><td class="good">100+, mesec 3</td></tr>
+      <tr><td>Strane sa schema.org oznakama</td><td class="bad">0</td><td class="good">sve, mesec 3</td></tr>
+      <tr><td>Slike bez <code>alt</code></td><td class="bad">486</td><td class="good">0, mesec 2</td></tr>
+      <tr><td>Strane sa 3+ internih linkova</td><td class="bad">60 od 437</td><td class="good">300+, mesec 3</td></tr>
+      <tr><td>Prikazi u Google pretrazi</td><td>bez podataka</td><td>osnovica u mesecu 1, rast od meseca 3</td></tr>
+      <tr><td>Pozivi i poruke sa pretrage</td><td>ne meri se</td><td>merenje od meseca 1, rast od meseca 4</td></tr>
+      <tr><td>Ocene u Google profilu</td><td>bez podataka</td><td>stalan rast od meseca 2</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Izveštaj dolazi svakog meseca i sadrži: šta je urađeno, šta se promenilo u brojevima, šta je sledeće i šta nam je potrebno od vas. Bez opštih fraza i bez grafikona koji ništa ne znače.</p>
+</div>
+</section>
+
+<!-- ============ 18. POTREBNO ============ -->
+<section id="potrebno">
+<div class="wrap">
+  <h2><span class="num">18</span>Šta nam je potrebno od vas</h2>
+  <p class="sub">Da bi prvi mesec bio produktivan.</p>
+
+  <ol>
+    <li><strong>Pristup Google Search Console</strong> za oba oblika domena. Ako profil ne postoji, napravićemo ga — potrebna je samo potvrda vlasništva.</li>
+    <li><strong>Pristup Google Analytics-u.</strong> Ako ne postoji, postavljamo ga u prvoj nedelji.</li>
+    <li><strong>Pristup Google Business Profile-u</strong> ili prenos prava upravljanja.</li>
+    <li><strong>Kontakt programera ili firme koja održava sajt</strong> (u podnožju stoji Web Factory). Većina poslova iz prve faze su izmene na serveru i u šablonu.</li>
+    <li><strong>Pristup administraciji sajta</strong> ako postoji mogućnost izmene tekstova bez programera — to bitno ubrzava rad.</li>
+    <li><strong>Cenovni opseg usluga</strong> — makar interno, da bismo napisali stranu sa cenama. Ne moraju biti fiksne cifre, dovoljno je od–do.</li>
+    <li><strong>Radno vreme i rok dolaska</strong> — radi li služba noću, nedeljom, praznicima; za koliko sestra realno stiže.</li>
+    <li><strong>Licence i rešenja o registraciji</strong> zdravstvene ustanove, koje se mogu objaviti na sajtu.</li>
+    <li><strong>Podaci o timu</strong> — imena, zvanja, specijalizacije, godine iskustva, fotografije ako postoje.</li>
+    <li><strong>Kontakt osoba na vašoj strani</strong> za odobravanje tekstova. Medicinski sadržaj mora da prođe proveru stručnog lica — ni jedan tekst ne objavljujemo bez vaše potvrde.</li>
+  </ol>
+
+  <div class="callout">
+    <p>Prvi mesec može da počne i bez svih ovih stvari — tehnički deo plana ne zavisi od njih. Ali bez Search Console pristupa radimo bez povratne informacije, a bez kontakta programera tehničke ispravke stoje. To su dva najvažnija koraka.</p>
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+  <p><strong>SEO audit — mobilnasestra.rs</strong> · 28. oktobar 2026.</p>
+  <p>Audit je zasnovan na kompletnom obilasku 875 URL-ova (437 jedinstvenih strana), analizi 24.968 veza i ručnom pregledu sajta i konkurencije. Rađen je bez pristupa Google Search Console i Google Analytics — podaci o prikazima, pozicijama i saobraćaju biće dodati nakon dobijanja pristupa. Pominjanje konkurenata služi isključivo za poređenje i zasnovano je na javno dostupnim informacijama na dan izrade audita.</p>
+</div>
+</footer>
+
+</body>
+</html>
