@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dodatak auditu — ponuda i prognoza · mobilnasestra.rs</title>
+<meta name="description" content="Dodatak SEO auditu sajta mobilnasestra.rs: konačna cena, spisak rezultata za prvi mesec i prognoza za prva tri meseca sa objašnjenjima.">
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --surface-2:#f0f2f5; --line:#dfe3e8;
+  --ink:#16202b; --ink-2:#4b5765; --ink-3:#7c8795;
+  --accent:#0f6f5c; --accent-soft:#e3f1ee; --accent-ink:#0a4f42;
+  --crit:#b4232a; --crit-soft:#fbeaea;
+  --warn:#9a6207; --warn-soft:#fdf2dc;
+  --ok:#1d6f3f; --ok-soft:#e6f3ea;
+  --info:#2a5aa8; --info-soft:#e8eef9;
+  --radius:10px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161c; --surface:#181f27; --surface-2:#1f2832; --line:#2c3845;
+    --ink:#e8edf2; --ink-2:#aeb9c6; --ink-3:#7d8a99;
+    --accent:#4bbfa4; --accent-soft:#16302b; --accent-ink:#8fdcc8;
+    --crit:#f1868c; --crit-soft:#331a1c;
+    --warn:#e0b05a; --warn-soft:#332a18;
+    --ok:#73c791; --ok-soft:#18301f;
+    --info:#8fb4ef; --info-soft:#1a2436;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161c; --surface:#181f27; --surface-2:#1f2832; --line:#2c3845;
+  --ink:#e8edf2; --ink-2:#aeb9c6; --ink-3:#7d8a99;
+  --accent:#4bbfa4; --accent-soft:#16302b; --accent-ink:#8fdcc8;
+  --crit:#f1868c; --crit-soft:#331a1c;
+  --warn:#e0b05a; --warn-soft:#332a18;
+  --ok:#73c791; --ok-soft:#18301f;
+  --info:#8fb4ef; --info-soft:#1a2436;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+
+.topbar{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:1000px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .brand{font-weight:700;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap}
+.topbar nav{display:flex;gap:4px;flex-wrap:wrap;font-size:.8rem;margin-left:auto}
+.topbar nav a{color:var(--ink-2);text-decoration:none;padding:4px 8px;border-radius:6px;white-space:nowrap}
+.topbar nav a:hover{background:var(--surface-2);color:var(--ink)}
+.topbar nav a.back{color:var(--accent-ink);font-weight:600}
+@media(max-width:760px){
+  .topbar-in{flex-wrap:nowrap;gap:10px}
+  .topbar nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .topbar nav::-webkit-scrollbar{display:none}
+  .topbar .brand{font-size:.84rem}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .topbar nav a.back{color:var(--accent)}}
+
+.hero{padding:52px 0 34px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+h1{font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.14;letter-spacing:-.03em;margin:0 0 16px;font-weight:800}
+.lede{font-size:clamp(1.02rem,2.2vw,1.16rem);color:var(--ink-2);max-width:66ch;margin:0 0 26px}
+.meta-strip{display:flex;gap:26px;flex-wrap:wrap;font-size:.82rem;color:var(--ink-3);padding-top:20px;border-top:1px solid var(--line)}
+.meta-strip b{display:block;color:var(--ink);font-size:.94rem;font-weight:600}
+
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{font-size:clamp(1.3rem,3.2vw,1.72rem);line-height:1.2;letter-spacing:-.02em;margin:0 0 6px;font-weight:750}
+h2 .num{display:inline-block;font-family:var(--mono);font-size:.72em;color:var(--accent);margin-right:.5em;font-weight:600}
+.sub{color:var(--ink-3);font-size:.9rem;margin:0 0 26px;max-width:70ch}
+h3{font-size:1.06rem;margin:30px 0 10px;letter-spacing:-.01em;font-weight:700}
+p{margin:0 0 14px;max-width:72ch}
+ul,ol{margin:0 0 16px;padding-left:22px;max-width:72ch}
+li{margin-bottom:7px}
+code{font-family:var(--mono);font-size:.855em;background:var(--surface-2);padding:1px 5px;border-radius:4px;word-break:break-word}
+a{color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) a{color:var(--accent)}}
+
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin:20px 0}
+.callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.callout.info{border-left-color:var(--info);background:var(--info-soft)}
+.callout > :last-child{margin-bottom:0}
+.callout h3{margin-top:0}
+
+.tbl-scroll{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:560px}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--surface-2);font-weight:650;font-size:.73rem;text-transform:uppercase;letter-spacing:.055em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:.82rem;white-space:nowrap}
+.good{color:var(--ok);font-weight:650}
+.mid{color:var(--warn);font-weight:650}
+
+.price-box{background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);padding:26px;margin:24px 0}
+.price-num{font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .price-num{color:var(--accent)}}
+.price-per{font-size:1rem;font-weight:500;color:var(--ink-3);letter-spacing:0}
+
+.deliv{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin:16px 0}
+.deliv h4{margin:0 0 12px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-weight:700}
+.deliv ol{margin:0;padding-left:22px}
+.deliv li{margin-bottom:10px}
+.deliv li b{font-weight:650}
+.deliv li span{display:block;color:var(--ink-2);font-size:.88rem;margin-top:2px}
+
+.month{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:14px 0}
+.month-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.month-head .tag{font-family:var(--mono);font-size:.76rem;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:5px;white-space:nowrap}
+.month-head h3{margin:0;font-size:1.06rem}
+.month-nums{display:flex;gap:26px;flex-wrap:wrap;margin:0 0 14px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.month-nums div{font-size:.78rem;color:var(--ink-3)}
+.month-nums b{display:block;font-size:1.18rem;font-weight:750;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.month > :last-child{margin-bottom:0}
+
+footer{padding:36px 0 50px;color:var(--ink-3);font-size:.83rem;border-top:1px solid var(--line)}
+
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin:26px 0}
+.toc ol{columns:2;column-gap:34px;margin:0;padding-left:20px;font-size:.88rem}
+.toc li{margin-bottom:6px;break-inside:avoid}
+.toc a{color:var(--ink-2);text-decoration:none}
+.toc a:hover{color:var(--accent-ink);text-decoration:underline}
+@media(max-width:620px){.toc ol{columns:1}}
+
+@media print{
+  .topbar{display:none}
+  body{background:#fff;font-size:11pt}
+  section,.month,.deliv{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="brand">Dodatak auditu · mobilnasestra.rs</span>
+    <nav>
+      <a class="back" href="index.html">← Audit</a>
+      <a href="#pozicioniranje">Pozicioniranje</a>
+      <a href="#cena">Cena</a>
+      <a href="#rezultati">Rezultati</a>
+      <a href="#kako">Kako SEO radi</a>
+      <a href="#prognoza">Prognoza</a>
+      <a href="#potrebno">Šta nam treba</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Dodatak SEO auditu</p>
+    <h1>Ponuda, plan i prognoza za prva tri meseca</h1>
+    <p class="lede">Ovaj dokument dopunjuje audit i odgovara na tri konkretna pitanja: koliko tačno košta prvi mesec, šta ćete u tom mesecu dobiti, i kakav rezultat je realno očekivati u prva tri meseca. Uz objašnjenje odakle svaka cifra dolazi.</p>
+    <div class="meta-strip">
+      <div><b>mobilnasestra.rs</b>Domen</div>
+      <div><b>300 € / mesečno</b>Konačna cena</div>
+      <div><b>28. oktobar 2026.</b>Datum</div>
+      <div><b><a href="index.html">Pun audit →</a></b>Osnovni dokument</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="toc">
+    <strong style="display:block;margin-bottom:12px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">Sadržaj</strong>
+    <ol>
+      <li><a href="#pozicioniranje">Ispravka pozicioniranja i šta ona menja</a></li>
+      <li><a href="#cena">Cena i šta je u njoj</a></li>
+      <li><a href="#rezultati">Šta dobijate u prvom mesecu</a></li>
+      <li><a href="#kako">Kako SEO radi po vremenu</a></li>
+      <li><a href="#prognoza">Prognoza mesec po mesec</a></li>
+      <li><a href="#odakle">Odakle dolaze brojevi</a></li>
+      <li><a href="#upiti">Prognoza po grupama upita</a></li>
+      <li><a href="#potrebno">Šta nam je potrebno od vas</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- 1 -->
+<section id="pozicioniranje">
+<div class="wrap">
+  <h2><span class="num">01</span>Ispravka pozicioniranja i šta ona menja</h2>
+  <p class="sub">Vaša napomena da ste fokusirani na stručne medicinske usluge, a ne na negu, menja prioritete — i to na bolje.</p>
+
+  <p>Kada sam ponovo pregledala podatke iz tog ugla, ispostavilo se da su strane koje se tiču stručnih medicinskih usluga u lošijem stanju od ostalih na sajtu:</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Strana</th><th>Stanje danas</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ambulantne usluge</strong><br><span style="font-size:.8rem;color:var(--ink-3)">Vaša ambulanta u Milentija Popovića</span></td><td>47 reči sopstvenog teksta i jedna interna veza sa celog sajta</td></tr>
+      <tr><td><strong>Davanje terapije po nalogu lekara</strong></td><td>U naslovu stoji tuđi tekst — „Nega epiziotomije". Greška u kodu</td></tr>
+      <tr><td><strong>Previjanje rana</strong></td><td>Strana usluge ne postoji. Katalog vodi na blog tekst</td></tr>
+      <tr><td><strong>Nega stome</strong></td><td>Strana usluge ne postoji. Katalog vodi na blog tekst</td></tr>
+      <tr><td><strong>Postoperativna rehabilitacija</strong></td><td>Strana usluge ne postoji. Katalog vodi na blog tekst</td></tr>
+      <tr><td><strong>Palijativno zbrinjavanje</strong></td><td>Strana usluge ne postoji. Katalog vodi na blog tekst</td></tr>
+      <tr><td><strong>Aplikacija injekcija, davanje infuzija, kateteri</strong></td><td>Strane postoje, ali bez ijednog podnaslova, bez opisa za pretragu i sa 3 do 7 internih veza</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Blog tekst i strana usluge nisu ista stvar. Čovek koji traži „previjanje rana Beograd" ima potrebu sada i traži ko to radi, koliko košta i kada može da dođe. Tekst pod naslovom „10 razloga zašto previjanje rane treba prepustiti stručnjaku" ne odgovara na to pitanje, pa ga Google i ne prikazuje na takvom upitu.</p>
+
+  <div class="callout">
+    <h3>Zašto je ovo pozicioniranje komercijalno povoljnije</h3>
+    <p>Upite oko kućne nege drže agregatori — <code>navidiku.rs</code>, <code>mirandre.com</code>, <code>halooglasi.com</code>. To su veliki katalozi sa hiljadama strana i potiskivanje je dug posao.</p>
+    <p>Upiti za konkretne medicinske intervencije u Beogradu su praktično nepokriveni. Niko ih ne cilja namenskom stranom, uključujući i Vaše direktne konkurente. Zato su to upiti na kojima se rezultat vidi brže, a istovremeno dolaze od ljudi koji zovu odmah.</p>
+  </div>
+
+  <p>Zato plan od drugog meseca ide na: previjanje rana, intramuskularne i intravenske injekcije, infuzije, plasiranje i zamena katetera, nega stome, davanje terapije po nalogu lekara, postoperativna rehabilitacija, sanitetski prevoz i ambulanta kao zasebna lokacija.</p>
+</div>
+</section>
+
+<!-- 2 -->
+<section id="cena">
+<div class="wrap">
+  <h2><span class="num">02</span>Cena i šta je u njoj</h2>
+
+  <div class="price-box">
+    <div class="price-num">300 € <span class="price-per">/ mesečno</span></div>
+    <p style="margin-top:14px;max-width:60ch">Konačan iznos za prvi mesec. Ista cena važi i za naredne mesece.</p>
+  </div>
+
+  <h3>U cenu ulazi</h3>
+  <ul>
+    <li><strong>Sve programerske izmene.</strong> Radi ih naš tim, ne Vaš izvođač. Ne stiže Vam nikakav dodatni račun i ne zavisite od tuđih rokova.</li>
+    <li>Rad celog tima: vođa projekta, tehnički SEO specijalista, copywriter i specijalista za lokalni SEO.</li>
+    <li>Pisanje i optimizacija tekstova na srpskom jeziku.</li>
+    <li>Vođenje Google Business Profile-a i profila u lokalnim katalozima.</li>
+    <li>Mesečni izveštaj sa konkretnim brojevima i planom za naredni mesec.</li>
+    <li>Stalna veza — pitanja, konsultacije, reakcija na promene.</li>
+  </ul>
+
+  <h3>U cenu ne ulazi</h3>
+  <p>Jedino eventualna kupovina spoljnih linkova. Ako se za tim pokaže potreba, predložićemo budžet <strong>do 50 € mesečno</strong> i nećemo potrošiti ni dinar bez Vaše prethodne saglasnosti. Nikada automatski.</p>
+
+  <p>Van toga su i plaćeno oglašavanje (Google Ads), snimanje videa i fotografisanje — to su zasebne usluge i nisu deo ovog plana.</p>
+</div>
+</section>
+
+<!-- 3 -->
+<section id="rezultati">
+<div class="wrap">
+  <h2><span class="num">03</span>Šta dobijate u prvom mesecu</h2>
+  <p class="sub">Spisak konkretnih stvari koje na kraju meseca možete da proverite.</p>
+
+  <div class="deliv">
+    <h4>Tehnički deo</h4>
+    <ol>
+      <li><b>Jedna verzija domena</b><span>Trajni redirekt sa www na verziju bez www, za svih 437 strana. Snaga linkova sa RTS-a, Politike i eKapije prestaje da se deli na dve verzije sajta.</span></li>
+      <li><b>Provera prelaska sa http na https</b><span>Da se obavlja u jednom koraku, a ne u dva.</span></li>
+      <li><b>Mapa sajta i robots.txt</b><span>Generisan sitemap.xml sa svim stranama i prijavljen Google-u, uređen robots.txt.</span></li>
+      <li><b>Ispravljene greške u kodu</b><span>Pokvareni linkovi koji prave strane bez naslova i bez mobilne verzije.</span></li>
+      <li><b>Normalizacija adresa</b><span>Sve adrese na mala slova, uklonjen duplikat strane o nezi stome.</span></li>
+      <li><b>Canonical oznake na paginaciji bloga</b><span>20 praznih strana izlazi iz indeksa i prestaje da troši resurse obilaska.</span></li>
+      <li><b>Ispravljen meta viewport</b><span>Pacijenti i članovi porodice moći će da uvećaju tekst na telefonu. Sada je to onemogućeno podešavanjem sajta.</span></li>
+      <li><b>Uklonjen nebezbedan sadržaj</b><span>Sa 6 strana, uz dodata bezbednosna zaglavlja na ceo sajt.</span></li>
+      <li><b>Open Graph oznake</b><span>Kada neko prosledi link u Viber ili na Facebook, prikazuju se naslov i slika umesto praznog polja.</span></li>
+      <li><b>Ispravljen naslov strane o davanju terapije</b><span>Umesto tuđeg naslova, pravi naslov te usluge.</span></li>
+      <li><b>Zaustavljen prenos snage na sajt izvođača</b><span>Link u podnožju sa svih 437 strana dobija oznaku koja sprečava prenos.</span></li>
+    </ol>
+  </div>
+
+  <div class="deliv">
+    <h4>Merenje i dokumenti</h4>
+    <ol start="12">
+      <li><b>Postavljeni Google Search Console i Analytics</b><span>Sa zabeleženim polaznim stanjem — od tog broja se meri svaki naredni mesec.</span></li>
+      <li><b>Izveštaj o brzini učitavanja na telefonu</b><span>Sa spiskom konkretnih mesta koja usporavaju sajt.</span></li>
+      <li><b>Revizija ambulante u Google Business Profile-u</b><span>I plan za prikupljanje ocena od zadovoljnih pacijenata.</span></li>
+      <li><b>Audit dopunjen stvarnim podacima o upitima</b><span>Sa kojim upitima se sajt već pojavljuje i gde je najbliže ulasku u prvih deset.</span></li>
+      <li><b>Plan za drugi mesec</b><span>Usmeren na medicinske usluge, sa spiskom strana i rokovima.</span></li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<!-- 4 -->
+<section id="kako">
+<div class="wrap">
+  <h2><span class="num">04</span>Kako SEO radi po vremenu</h2>
+  <p class="sub">Ovo objašnjenje stoji pre prognoze namerno — bez njega brojevi u prognozi deluju ili premalo, ili sumnjivo.</p>
+
+  <p>SEO radi nakupljanjem i razvija se postepeno. To nije oglašavanje, gde uplata daje prikaze istog dana. Posle svake izmene Google mora prvo ponovo da obiđe sajt, zatim da ga preoceni, i tek onda da podigne strane u rezultatima.</p>
+
+  <p>Između urađenog posla i vidljivog rezultata u pretrazi uvek prođe <strong>tri do osam nedelja</strong>. To je tehnička osobina pretraživača, ista za svaki sajt, i ne zavisi od toga koliko se neko trudi.</p>
+
+  <div class="callout">
+    <p>Praktična posledica: prvi mesec po prirodi stvari daje mali rast. On ne služi da podigne pozicije, nego da ukloni ono što sajt koči. Drugi mesec daje vidljiv pomak. Treći mesec je tačka na kojoj ulaganje počinje da se vraća.</p>
+    <p>Zato se rezultat SEO-a ne meri po jednom mesecu. Meri se po krivoj kroz tri do šest meseci.</p>
+  </div>
+
+  <h3>Šta dobijate zauzvrat</h3>
+  <p>Taj rast ne nestaje kada prestanete da plaćate, za razliku od oglašavanja. Strana o davanju infuzija kod kuće, jednom napisana i pozicionirana, nastavlja da dovodi ljude i narednih godina. Oglas prestaje da radi istog trenutka kada se potroši budžet.</p>
+</div>
+</section>
+
+<!-- 5 -->
+<section id="prognoza">
+<div class="wrap">
+  <h2><span class="num">05</span>Prognoza mesec po mesec</h2>
+  <p class="sub">Procenti se računaju u odnosu na polazno stanje, koje beležimo u prvom mesecu.</p>
+
+  <div class="month">
+    <div class="month-head"><span class="tag">Mesec 1</span><h3>Temelj</h3></div>
+    <div class="month-nums">
+      <div><b>+5–15%</b>saobraćaj sa pretrage</div>
+      <div><b>bez promene</b>pozivi i upiti</div>
+    </div>
+    <p>Rast je mali i to je očekivano — mesec odlazi na uklanjanje onoga što sajt koči. Ono malo rasta dolazi iz dva izvora: spajanja dve verzije sajta u jednu i prepisanih naslova, koji donose više klikova na istim pozicijama.</p>
+    <p>Pozivi ostaju na dosadašnjem nivou. Strane usluga još nisu prerađene, pa nema odakle da dođu novi.</p>
+  </div>
+
+  <div class="month">
+    <div class="month-head"><span class="tag">Mesec 2</span><h3>Strane medicinskih usluga</h3></div>
+    <div class="month-nums">
+      <div><b>+25–40%</b>saobraćaj sa pretrage</div>
+      <div><b>3–8</b>poziva i upita mesečno sa novih strana</div>
+    </div>
+    <p>Nove strane usluga ulaze u indeks za jednu do tri nedelje i počinju da se pojavljuju na upitima za konkretne intervencije. To je prvi put da se sajt uopšte pojavljuje tamo gde traže Vašu uslugu — danas za te upite nema nijednu stranu.</p>
+    <p>Pozicije su još uvek niske, ali prvi ljudi sa stvarnom potrebom počinju da stižu.</p>
+  </div>
+
+  <div class="month">
+    <div class="month-head"><span class="tag">Mesec 3</span><h3>Struktura i poverenje</h3></div>
+    <div class="month-nums">
+      <div><b>+40–70%</b>saobraćaj sa pretrage</div>
+      <div><b>8–18</b>poziva i upita mesečno</div>
+    </div>
+    <p>Strane usluga ulaze u prvih deset na upitima sa slabom konkurencijom i u prvih trideset na srednjim. Oznake koje dodajemo u trećem mesecu omogućavaju da se u rezultatima pojave blokovi sa pitanjima i ocenama, koji zauzimaju više prostora od običnog rezultata.</p>
+    <p>Ovo je mesec u kojem ulaganje počinje da se vraća.</p>
+  </div>
+
+  <div class="month">
+    <div class="month-head"><span class="tag">Mesec 6</span><h3>Orijentir, da se vidi kriva</h3></div>
+    <div class="month-nums">
+      <div><b>×2 – ×2,5</b>saobraćaj sa pretrage</div>
+      <div><b>25–45</b>poziva i upita mesečno</div>
+    </div>
+    <p>Šesti mesec navodim da bi se videlo da treći mesec nije kraj, nego tačka ubrzanja. Strane napisane u drugom i trećem mesecu do tada sazrevaju, a dodaju im se strane za opštine Beograda.</p>
+  </div>
+</div>
+</section>
+
+<!-- 6 -->
+<section id="odakle">
+<div class="wrap">
+  <h2><span class="num">06</span>Odakle dolaze brojevi</h2>
+  <p class="sub">Da prognoza ne bi bila broj bez pokrića, evo računa iza nje.</p>
+
+  <h3>Saobraćaj</h3>
+  <p>Rast u prvom mesecu dolazi iz dve stvari koje se mogu izračunati: spajanja dve verzije domena, čime se prestaje gubiti polovina snage ulaznih linkova, i prepisanih naslova i opisa, koji na istoj poziciji donose primetno više klikova. Oba efekta deluju na saobraćaj koji sajt već ima, bez čekanja na nove pozicije.</p>
+  <p>Rast u drugom i trećem mesecu dolazi iz novih strana. Danas sajt nema nijednu stranu koja cilja upit „procedura + Beograd" — reč „Beograd" postoji u svega 2 naslova od 437, i nijedan od njih nije strana procedure. Do kraja drugog meseca takvih strana ima 15 do 18.</p>
+
+  <h3>Pozivi i upiti</h3>
+  <p>Račun za treći mesec izgleda ovako:</p>
+  <div class="tbl-scroll">
+    <table>
+      <thead><tr><th>Korak</th><th class="num">Vrednost</th><th>Objašnjenje</th></tr></thead>
+      <tbody>
+        <tr><td>Posete stranama usluga mesečno</td><td class="num">150–300</td><td>Ljudi koji traže konkretnu intervenciju, ne čitaoci bloga</td></tr>
+        <tr><td>Stopa konverzije u poziv</td><td class="num">5–7%</td><td>Uobičajeno za hitne medicinske usluge na kućnoj adresi</td></tr>
+        <tr><td><strong>Pozivi i upiti mesečno</strong></td><td class="num good"><strong>8–18</strong></td><td>Rezultat</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Visoka stopa konverzije nije optimizam, nego posledica vrste upita. Čovek koji traži „infuzija kod kuće Beograd" ima potrebu danas i zove odmah. To je bitno drugačije ponašanje od čitaoca blog teksta o dekubitusu, koji je u fazi informisanja.</p>
+
+  <div class="callout info">
+    <p>Prognozu ćemo preračunati po stvarnim podacima posle prvog meseca, kada budemo imali izmerenu polaznu tačku. To je uobičajena praksa i upravo je to trenutak u kojem ima smisla dogovoriti konkretne KPI pokazatelje za naredne mesece — da plaćate za merljiv rezultat, a ne za proces.</p>
+  </div>
+
+  <h3>Šta ne obećavamo</h3>
+  <ul>
+    <li>Određenu poziciju na određen datum. To niko ne može pošteno da obeća, jer algoritam nije pod našom kontrolom.</li>
+    <li>Prva mesta na upitima koje drže veliki agregatori.</li>
+  </ul>
+  <p>Sve ostalo iznad su radni orijentiri po kojima možete da se proveravate svakog meseca. Izveštaj dolazi sa brojevima iz Search Console-a, pa su provere na Vašoj strani, a ne na našoj reči.</p>
+</div>
+</section>
+
+<!-- 7 -->
+<section id="upiti">
+<div class="wrap">
+  <h2><span class="num">07</span>Prognoza po grupama upita</h2>
+  <p class="sub">Stanje na kraju trećeg meseca, po težini upita.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th>Grupa</th><th>Primeri</th><th>Očekivanje</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Slaba konkurencija</strong></td>
+        <td>„infuzija kod kuće Beograd"<br>„zamena urinarnog katetera kod kuće"<br>„davanje terapije po nalogu lekara Beograd"</td>
+        <td class="good">Realan ulazak u prvih deset do kraja trećeg meseca.<br><span style="color:var(--ink-3);font-weight:400;font-size:.82rem">Te upite u Beogradu praktično niko ne pokriva namenskom stranom, a Vi imate i stručni sadržaj i autoritet u medijima.</span></td>
+      </tr>
+      <tr>
+        <td><strong>Srednja konkurencija</strong></td>
+        <td>„medicinska sestra kod kuće Beograd"<br>„ambulanta za zdravstvenu negu Novi Beograd"</td>
+        <td class="mid">Prvih dvadeset do trideset do kraja trećeg meseca.<br><span style="color:var(--ink-3);font-weight:400;font-size:.82rem">Prvih deset realno u četvrtom do šestom mesecu.</span></td>
+      </tr>
+      <tr>
+        <td><strong>Upiti pod agregatorima</strong></td>
+        <td>„kućna nega Beograd cena"<br>i slični upiti sa rečju cena</td>
+        <td>Potiskivanje traje 6–12 meseci.<br><span style="color:var(--ink-3);font-weight:400;font-size:.82rem">S obzirom na Vaše pozicioniranje, ovi upiti ionako nisu prioritet.</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p>Nezavisno od pozicija, na kraju trećeg meseca sajt prvi put ima strane koje mogu da odgovore čoveku kome treba konkretna intervencija. Danas ih nema nijednu. To je rezultat sam po sebi, i on ostaje bez obzira na to kako se pozicije kreću iz nedelje u nedelju.</p>
+  </div>
+</div>
+</section>
+
+<!-- 8 -->
+<section id="potrebno">
+<div class="wrap">
+  <h2><span class="num">08</span>Šta nam je potrebno od vas</h2>
+
+  <h3>Bez ovoga prvi mesec ne može da krene punim tempom</h3>
+  <ul>
+    <li><strong>Pristup serveru i administraciji sajta.</strong> Da bismo programerski deo odradili sami, kako je i obećano cenom. Bez toga možemo samo da napišemo specifikaciju za Web Factory, pa izmene zavise od njihovih rokova, a ne od naših.</li>
+    <li><strong>Pristup Google nalogu ambulante</strong> — Search Console, Analytics i Business Profile. Ako nalozi ne postoje, postavljamo ih mi.</li>
+  </ul>
+
+  <h3>Potrebno za drugi mesec</h3>
+  <ul>
+    <li><strong>Cenovni opseg usluga.</strong> Dovoljan je raspon „od–do", fiksne cifre nisu obavezne.</li>
+    <li><strong>Radno vreme i rok izlaska na teren.</strong> Radi li služba noću, nedeljom i praznicima, i za koliko sestra realno stiže. To su dva najčešća pitanja pacijenata.</li>
+    <li><strong>Licence i rešenja o registraciji</strong> koja se mogu objaviti. Za zdravstvenu uslugu to je odlučujući signal poverenja, i za posetioca i za Google.</li>
+    <li><strong>Podaci o timu</strong> — imena, zvanja, specijalizacije, godine iskustva, fotografije ako postoje.</li>
+    <li><strong>Odgovorno lice za odobravanje tekstova.</strong> Medicinski sadržaj mora da prođe proveru stručnog lica. Nijedan tekst ne objavljujemo bez Vaše potvrde.</li>
+  </ul>
+
+  <div class="callout warn">
+    <p>Prvi mesec može da počne i pre nego što sve ovo stigne — tehnički deo plana ne zavisi od cenovnika ni od podataka o timu. Ali pristup serveru i Google nalozima su dve stvari koje zaista blokiraju posao, pa ih vredi rešiti pre početka.</p>
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+  <p><strong>Dodatak SEO auditu — mobilnasestra.rs</strong> · 28. oktobar 2026. · <a href="index.html">Pun audit</a></p>
+  <p>Prognoza predstavlja radnu procenu zasnovanu na podacima iz obilaska sajta, stanju konkurencije u Beogradu i uobičajenim pokazateljima za lokalne medicinske usluge. Biće preračunata po stvarnim podacima nakon prvog meseca rada.</p>
+</div>
+</footer>
+
+</body>
+</html>
